@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">E-Commerce_App</string>
+    <string name="enter_your_email_to_continue">Enter your email to continue</string>
+    <string name="continuee">Continue</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_facebook">Continue with facebook</string>
+    <string name="by_tapping_continue_with_google_or_facebook_you_agree_to_app_s_terms_of_use_and_privacy_policy">By tapping Continue with Google or Facebook you agree to app\'s terms of use and privacy policy :)</string>
+</resources>
