@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="hvm"
             type="com.android.e_commerce_app.ui.home.HomeViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,25 +14,37 @@
         android:layout_height="match_parent">
 
             <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:defaultQueryHint="Search for anything on app"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/search"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_design"
+                android:layout_margin="5dp"
+                />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/buttonnavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/buttonnavigation"
             app:itemIconTint="@color/buttonnavigationcolor"
             app:itemTextColor="@color/buttonnavigationcolor"
-            >
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/buttonnavigation"
+            tools:layout_editor_absoluteX="0dp">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
