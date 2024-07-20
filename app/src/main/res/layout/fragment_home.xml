@@ -39,7 +39,6 @@
                 android:layout_marginTop="5dp"
                 />
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view1"
                 android:layout_width="match_parent"
@@ -48,7 +47,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 tools:listitem="@layout/item_design"
-                android:layout_margin="5dp" />
+                android:layout_margin="15dp" />
 
             <TextView
                 android:id="@+id/titleOfCategory2"
@@ -81,7 +80,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 tools:listitem="@layout/item_design"
-                android:layout_margin="5dp" />
+                android:layout_margin="15dp" />
 
             <TextView
                 android:id="@+id/titleOfCategory3"
@@ -115,7 +114,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 tools:listitem="@layout/item_design"
-                android:layout_margin="5dp" />
+                android:layout_margin="15dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
