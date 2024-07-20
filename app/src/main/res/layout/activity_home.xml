@@ -11,36 +11,29 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeActivity"
+        >
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                app:defaultQueryHint="Search for anything on app"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:defaultQueryHint="Search for anything on app"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/search"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_design"
-                android:layout_margin="5dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/recycler_view1"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_design"
-                android:layout_margin="5dp"
-                />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/buttonnavigation"
+            app:layout_constraintTop_toBottomOf="@id/search"
+            tools:listitem="@layout/item_design" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/buttonnavigation"
@@ -49,12 +42,9 @@
             app:itemIconTint="@color/buttonnavigationcolor"
             app:itemTextColor="@color/buttonnavigationcolor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/buttonnavigation"
-            tools:layout_editor_absoluteX="0dp">
+            app:menu="@menu/buttonnavigation">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

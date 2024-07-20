@@ -5,9 +5,9 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_facebook">Continue with facebook</string>
     <string name="by_tapping_continue_with_google_or_facebook_you_agree_to_app_s_terms_of_use_and_privacy_policy">By tapping Continue with Google or Facebook you agree to app\'s terms of use and privacy policy :)</string>
-    <string name="home" />
-    <string name="search" />
-    <string name="like" />
-    <string name="cart" />
-    <string name="profile" />
+    <string name="home">home</string>
+    <string name="search">search</string>
+    <string name="like">like</string>
+    <string name="cart">cart</string>
+    <string name="profile">profile</string>
 </resources>
