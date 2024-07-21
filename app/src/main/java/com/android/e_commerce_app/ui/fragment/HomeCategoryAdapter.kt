@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ItemDesignBinding
 
-class HomeCategoryAdapter(var items: List<Item_Category>?) :Adapter<HomeCategoryAdapter.ItemViewHolder>(){
+class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryAdapter.ItemViewHolder>(){
 
     class ItemViewHolder(var homeBinding:ItemDesignBinding):ViewHolder(homeBinding.root){
         fun bind(itemBinding:Item_Category){
@@ -19,17 +19,23 @@ class HomeCategoryAdapter(var items: List<Item_Category>?) :Adapter<HomeCategory
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        var viewBinding:ItemDesignBinding=DataBindingUtil.inflate(LayoutInflater.from(parent.context),R.layout.item_design,parent,false)
+        val viewBinding:ItemDesignBinding=DataBindingUtil.
+        inflate(LayoutInflater.from(parent.context),R.layout.item_design,parent,false)
         return ItemViewHolder(viewBinding)
     }
 
     override fun getItemCount(): Int {
-        return items!!.size
+        return items?.size?:0
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        var item: Item_Category = items!!.get(position)
+        val item: Item_Category = items!!.get(position)
         holder.bind(item)
 
+    }
+
+    fun notify(item:MutableList<Item_Category>?){
+        items=item
+        notifyDataSetChanged()
     }
 }

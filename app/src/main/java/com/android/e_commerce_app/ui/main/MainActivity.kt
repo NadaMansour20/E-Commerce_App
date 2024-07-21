@@ -6,58 +6,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ActivityMainBinding
 import com.android.e_commerce_app.ui.fragment.HomeFragment
-import com.android.e_commerce_app.ui.fragment.LoveFragment
 import com.android.final_app.Base.BaseActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
-
-    lateinit var button:BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        button=findViewById(R.id.buttonnavigation)
 
         dataBinding.hvm=viewModel
 
-        button.setOnClickListener{
-            if(it.id==R.id.home){
+        dataBinding.buttonnavigation.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener{
+
+            if(it.itemId==R.id.home){
                 PushFragmnet(HomeFragment())
-            }
-            else if(it.id==R.id.search){
 
             }
-            else if(it.id==R.id.profile){
+            return@OnItemSelectedListener true
 
-            }
-            else if(it.id==R.id.like){
-                PushFragmnet(LoveFragment())
-
-            }
-            else if(it.id==R.id.cart){
-
-            }
-        }
-
-       /* dataBinding.buttonnavigation.setOnClickListener{
-            if(it.id==R.id.home){
-                PushFragmnet(HomeFragment())
-            }
-            else if(it.id==R.id.search){
-
-            }
-            else if(it.id==R.id.profile){
-
-            }
-            else if(it.id==R.id.like){
-                PushFragmnet(LoveFragment())
-
-            }
-            else if(it.id==R.id.cart){
-
-            }
-        }*/
-
+        })
 
     }
 
@@ -72,7 +38,7 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
     }
 
     fun PushFragmnet(fragment:Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.container_frame,fragment).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container_frame,fragment).commit()
 
     }
 }
