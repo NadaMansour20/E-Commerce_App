@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures{
         dataBinding=true
+        viewBinding=true
     }
 }
 
@@ -53,4 +55,8 @@ dependencies {
     //view_model && live_data
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
+
+    //Glide for image
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.makeramen:roundedimageview:2.3.0")
 }

@@ -12,6 +12,7 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         dataBinding.lvm=viewModel
 
 

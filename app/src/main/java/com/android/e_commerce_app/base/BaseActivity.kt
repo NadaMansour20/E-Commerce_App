@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.android.e_commerce_app.Base.BaseViewModel
+import com.android.e_commerce_app.base.BaseViewModel
 
 abstract class BaseActivity<VM:BaseViewModel,DB:ViewDataBinding>:AppCompatActivity() {
 
@@ -20,9 +20,6 @@ abstract class BaseActivity<VM:BaseViewModel,DB:ViewDataBinding>:AppCompatActivi
         dataBinding=DataBindingUtil.setContentView(this,get_layoutId())
 
         viewModel=get_view_model()
-
-
-
 
 
     }

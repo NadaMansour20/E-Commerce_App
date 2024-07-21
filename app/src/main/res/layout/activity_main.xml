@@ -6,13 +6,13 @@
     <data>
         <variable
             name="hvm"
-            type="com.android.e_commerce_app.ui.home.HomeViewModel" />
+            type="com.android.e_commerce_app.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeActivity"
+        tools:context=".ui.main.MainActivity"
         >
 
         <androidx.appcompat.widget.SearchView
@@ -24,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
+            android:id="@+id/container_frame"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             app:itemIconTint="@color/buttonnavigationcolor"
             app:itemTextColor="@color/buttonnavigationcolor"
+            app:layout_constraintTop_toBottomOf="@id/container_frame"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/buttonnavigation">
 

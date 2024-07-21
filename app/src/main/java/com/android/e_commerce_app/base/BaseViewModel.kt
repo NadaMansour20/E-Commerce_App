@@ -1,4 +1,4 @@
-package com.android.e_commerce_app.Base
+package com.android.e_commerce_app.base
 
 import androidx.lifecycle.ViewModel
 
