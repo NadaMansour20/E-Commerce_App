@@ -3,9 +3,11 @@ package com.android.e_commerce_app.ui.fragment
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.android.e_commerce_app.base.BaseFragment
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.FragmentHomeBinding
+import com.android.e_commerce_app.ui.ClickListener
 
 class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
 
@@ -32,6 +34,13 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
         databinding.recyclerView3.adapter=homeAdapter
 
 
+            homeAdapter.fav_onclick=object: ClickListener {
+            override fun add_FavClick(position: Int,itemCategory: Item_Category) {
+
+               // Toast.makeText(requireContext(), "nadaaaaaaaaaa", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
 
     }

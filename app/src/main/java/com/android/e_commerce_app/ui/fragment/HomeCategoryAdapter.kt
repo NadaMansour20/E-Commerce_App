@@ -2,6 +2,7 @@ package com.android.e_commerce_app.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -32,17 +33,31 @@ class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryA
         return items?.size?:0
     }
 
+    var cn=1
+
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item: Item_Category = items!!.get(position)
         holder.bind(item)
 
-//            if(fav_onclick!=null){
-//
-//                holder.homeBinding.addToFavBtn.setOnClickListener {
-//                    fav_onclick?.add_FavClick(position, items!![position])
-//                }
-//
-//            }
+        // click to add product in like list
+            if(fav_onclick!=null){
+
+                holder.homeBinding.addToFavBtn.setOnClickListener {
+
+                    fav_onclick?.add_FavClick(position, items!![position])
+
+                    if(cn%2!=0) {
+
+                        holder.homeBinding.addToFavBtn.setImageResource(R.drawable.blacklike)
+                    }
+                    else{
+                        holder.homeBinding.addToFavBtn.setImageResource(R.drawable.like)
+                    }
+                    cn++
+                }
+
+            }
+
 
     }
 
