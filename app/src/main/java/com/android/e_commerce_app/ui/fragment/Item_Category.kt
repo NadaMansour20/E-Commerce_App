@@ -4,6 +4,7 @@ data class Item_Category (
 
     var imageId:Int?=null,
     var name:String?=null,
-    var price:Int?=null
+    var price:Int?=null,
+    var liked:Boolean?=null
 
 )

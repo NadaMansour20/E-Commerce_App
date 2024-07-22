@@ -10,4 +10,5 @@
     <string name="like">like</string>
     <string name="cart">cart</string>
     <string name="profile">profile</string>
+    <string name="egp">EGP</string>
 </resources>

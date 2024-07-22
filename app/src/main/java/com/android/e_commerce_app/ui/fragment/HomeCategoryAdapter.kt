@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ItemDesignBinding
+import com.android.e_commerce_app.ui.ClickListener
 
 class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryAdapter.ItemViewHolder>(){
+
+
+    var fav_onclick:ClickListener?=null
 
     class ItemViewHolder(var homeBinding:ItemDesignBinding):ViewHolder(homeBinding.root){
         fun bind(itemBinding:Item_Category){
@@ -31,6 +35,14 @@ class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryA
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item: Item_Category = items!!.get(position)
         holder.bind(item)
+
+//            if(fav_onclick!=null){
+//
+//                holder.homeBinding.addToFavBtn.setOnClickListener {
+//                    fav_onclick?.add_FavClick(position, items!![position])
+//                }
+//
+//            }
 
     }
 
