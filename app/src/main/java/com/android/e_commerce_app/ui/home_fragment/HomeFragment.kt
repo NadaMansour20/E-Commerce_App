@@ -1,9 +1,8 @@
-package com.android.e_commerce_app.ui.fragment
+package com.android.e_commerce_app.ui.home_fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.android.e_commerce_app.base.BaseFragment
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.FragmentHomeBinding

@@ -6,14 +6,14 @@
     <data>
         <variable
             name="fvm"
-            type="com.android.e_commerce_app.ui.fragment.HomeFragmentViewModel" />
+            type="com.android.e_commerce_app.ui.home_fragment.HomeFragmentViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.HomeFragment">
+        tools:context=".ui.home_fragment.HomeFragment">
 
 
 
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="Comfort Wear"
+                    android:text="@string/best_selling"
                     android:textStyle="bold"
                     android:textSize="22sp"
                     android:layout_margin="20dp" />
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recycler_view1"
-                    android:text="Comfort Wear"
+                    android:text="@string/comfort_wear"
                     android:textStyle="bold"
                     android:textSize="22sp"
                     android:layout_margin="20dp" />
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recycler_view2"
-                    android:text="Comfort Wear"
+                    android:text="@string/recommended_for_you"
                     android:textStyle="bold"
                     android:textSize="22sp"
                     android:layout_margin="20dp" />

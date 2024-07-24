@@ -1,4 +1,4 @@
-package com.android.e_commerce_app.ui.fragment
+package com.android.e_commerce_app.ui.home_fragment
 
 data class Item_Category (
 

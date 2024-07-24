@@ -5,8 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ActivityMainBinding
-import com.android.e_commerce_app.ui.fragment.HomeCategoryAdapter
-import com.android.e_commerce_app.ui.fragment.HomeFragment
+import com.android.e_commerce_app.ui.home_fragment.HomeFragment
 import com.android.final_app.Base.BaseActivity
 import com.google.android.material.navigation.NavigationBarView
 

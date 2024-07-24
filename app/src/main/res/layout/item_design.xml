@@ -5,7 +5,7 @@
     <data>
         <variable
             name="itemDesign"
-            type="com.android.e_commerce_app.ui.fragment.Item_Category" />
+            type="com.android.e_commerce_app.ui.home_fragment.Item_Category" />
 
     </data>
 
