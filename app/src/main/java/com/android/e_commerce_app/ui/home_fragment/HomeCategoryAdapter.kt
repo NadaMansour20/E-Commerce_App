@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ItemDesignBinding
 import com.android.e_commerce_app.ui.ClickListener
+import com.android.e_commerce_app.ui.api.ProductsItem
 
-class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryAdapter.ItemViewHolder>(){
+class HomeCategoryAdapter(var items:List<ProductsItem?>?) :Adapter<HomeCategoryAdapter.ItemViewHolder>(){
 
 
     var fav_onclick:ClickListener?=null
 
     class ItemViewHolder(var homeBinding:ItemDesignBinding):ViewHolder(homeBinding.root){
-        fun bind(itemBinding:Item_Category){
+        fun bind(itemBinding: ProductsItem?){
             homeBinding.itemDesign=itemBinding
             homeBinding.invalidateAll()  //to check all items is bind
         }
@@ -35,7 +36,7 @@ class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryA
     var cn=1
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item: Item_Category = items!!.get(position)
+        val item: ProductsItem? = items!!.get(position)
         holder.bind(item)
 
         // click to add product in like list
@@ -60,7 +61,7 @@ class HomeCategoryAdapter(var items:List<Item_Category>?) :Adapter<HomeCategoryA
 
     }
 
-    fun notify(item:MutableList<Item_Category>?){
+    fun notify(item:List<ProductsItem?>?){
         items=item
         notifyDataSetChanged()
     }

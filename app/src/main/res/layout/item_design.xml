@@ -5,7 +5,7 @@
     <data>
         <variable
             name="itemDesign"
-            type="com.android.e_commerce_app.ui.home_fragment.Item_Category" />
+            type="com.android.e_commerce_app.ui.api.ProductsItem" />
 
     </data>
 
@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:src="@drawable/image"
+                android:LoadImage="@{itemDesign.productPhoto}"
                 android:adjustViewBounds="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -44,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/item"
-                android:text="@{itemDesign.name.toString()}"
+                android:text="@{itemDesign.productTitle}"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -67,7 +68,7 @@
                 app:layout_constraintStart_toEndOf="@id/EGP"
                 app:layout_constraintTop_toBottomOf="@id/imageName"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@{itemDesign.price.toString()}"
+                android:text="@{itemDesign.productPrice}"
                 android:textSize="20sp"
                 android:layout_margin="10dp"
                 android:textStyle="bold" />

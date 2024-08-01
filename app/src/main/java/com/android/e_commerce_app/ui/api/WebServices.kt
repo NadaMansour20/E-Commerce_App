@@ -1,71 +1,64 @@
 package com.android.e_commerce_app.ui.api
 
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface WebServices {
 
-
     @GET("v2/product-details")
-    fun get_allProduct(
+    @Headers(
+        "x-apihub-key: VywaucojckLdp-cXDx4eu4OHfAgdUvSUywiaK-osNYXIF3CcN-",
+        "x-apihub-host: Real-Time-Amazon-Data.allthingsdev.co",
+        "x-apihub-endpoint: d6976176-ade6-4034-98d7-c3fda4e68bfb"
+    )
+    suspend fun get_allProduct(
 
         @Query("asin")
         asin:String,
 
-        @Query("apihub_key")
-        apihub_key: String =Constant.apihub_key,
-        @Query("apihub_host")
-        apihub_host:String=Constant.apihub_host,
-        @Query("apihub_endpoint")
-        apihub_endpoint:String=Constant.apihub_endpoint
-
     ):ProductResponse
 
     @GET("v2/search")
-    fun get_productBySearch(
+    @Headers(
+        "x-apihub-key: VywaucojckLdp-cXDx4eu4OHfAgdUvSUywiaK-osNYXIF3CcN-",
+        "x-apihub-host: Real-Time-Amazon-Data.allthingsdev.co",
+        "x-apihub-endpoint: d6976176-ade6-4034-98d7-c3fda4e68bfb"
+    )
+   suspend fun get_productBySearch(
 
         @Query("query")
         query:String,
 
-        @Query("apihub_key")
-        apihub_key: String =Constant.apihub_key,
-        @Query("apihub_host")
-        apihub_host:String=Constant.apihub_host,
-        @Query("apihub_endpoint")
-        apihub_endpoint:String=Constant.apihub_endpoint
     ):ProductResponse
 
 
     @GET("v2/best-sellers")
-    fun get_bestSellerApi(
+    @Headers(
+        "x-apihub-key: VywaucojckLdp-cXDx4eu4OHfAgdUvSUywiaK-osNYXIF3CcN-",
+        "x-apihub-host: Real-Time-Amazon-Data.allthingsdev.co",
+        "x-apihub-endpoint: d6976176-ade6-4034-98d7-c3fda4e68bfb"
+    )
+    suspend fun get_bestSellerApi(
 
         @Query("type")
         type:String,
         @Query("category")
         category:String,
 
-        @Query("apihub_key")
-        apihub_key: String =Constant.apihub_key,
-        @Query("apihub_host")
-        apihub_host:String=Constant.apihub_host,
-        @Query("apihub_endpoint")
-        apihub_endpoint:String=Constant.apihub_endpoint
-
-
         ):ProductResponse
 
     @GET("v2/products-by-category")
-    fun get_products_byCategory(
+    @Headers(
+        "x-apihub-key: VywaucojckLdp-cXDx4eu4OHfAgdUvSUywiaK-osNYXIF3CcN-",
+        "x-apihub-host: Real-Time-Amazon-Data.allthingsdev.co",
+        "x-apihub-endpoint: d6976176-ade6-4034-98d7-c3fda4e68bfb"
+    )
+    suspend fun get_products_byCategory(
 
         @Query("category_id")
         categoryId:String,
 
-        @Query("apihub_key")
-        apihub_key: String =Constant.apihub_key,
-        @Query("apihub_host")
-        apihub_host:String=Constant.apihub_host,
-        @Query("apihub_endpoint")
-        apihub_endpoint:String=Constant.apihub_endpoint
 
     ):ProductResponse
 

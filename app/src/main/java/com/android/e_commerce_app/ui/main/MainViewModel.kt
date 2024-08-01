@@ -4,6 +4,4 @@ import com.android.e_commerce_app.base.BaseViewModel
 
 
 class MainViewModel:BaseViewModel(){
-
-
 }

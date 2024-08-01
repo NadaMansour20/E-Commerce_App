@@ -4,9 +4,6 @@
     <item android:id="@+id/home"
         android:title="@string/home"
         android:icon="@drawable/home3"/>
-    <item android:id="@+id/search"
-        android:title="@string/search"
-        android:icon="@drawable/search"/>
     <item android:id="@+id/like"
         android:title="@string/like"
         android:icon="@drawable/like"/>

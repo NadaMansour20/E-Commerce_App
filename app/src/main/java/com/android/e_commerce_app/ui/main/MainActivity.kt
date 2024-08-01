@@ -5,11 +5,20 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ActivityMainBinding
+import com.android.e_commerce_app.ui.cartfragment.CartFragment
+import com.android.e_commerce_app.ui.favfragment.FavFragment
 import com.android.e_commerce_app.ui.home_fragment.HomeFragment
+import com.android.e_commerce_app.ui.profilefragment.ProfileFragment
 import com.android.final_app.Base.BaseActivity
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
+
+
+    var homeFragment=HomeFragment()
+    var favFragment=FavFragment()
+    var cartFragment=CartFragment()
+    var profileFragment=ProfileFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +28,19 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
         dataBinding.buttonnavigation.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener{
 
             if(it.itemId==R.id.home){
-                PushFragmnet(HomeFragment())
+                PushFragmnet(homeFragment)
 
             }
+            else if(it.itemId==R.id.like){
+                PushFragmnet(favFragment)
+            }
+            else if(it.itemId==R.id.cart){
+                PushFragmnet(cartFragment)
+            }
+            else if(it.itemId==R.id.profile){
+                PushFragmnet(profileFragment)
+            }
+
             return@OnItemSelectedListener true
 
         })
