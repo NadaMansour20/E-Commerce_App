@@ -27,7 +27,9 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
 
 
         //fetch data from api
-        viewModel.get_productBySearch("   Women")
+       // viewModel.get_productBySearch("   Women")
+
+        viewModel.get_best_Seller(   "BEST_SELLERS","software")
 
         createList()
 
@@ -58,11 +60,15 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
     fun createList() {
 
         //observe data to activity
-        viewModel.list_liveData.observe(viewLifecycleOwner, Observer {
+//        viewModel.product_list_liveData.observe(viewLifecycleOwner, Observer {
+//
+//            homeAdapter.notify(it)
+//
+//
+//        })
+        viewModel.bestseller_list_liveData.observe(viewLifecycleOwner, Observer {
 
             homeAdapter.notify(it)
-
-
         })
     }
 

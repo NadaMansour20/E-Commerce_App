@@ -77,7 +77,16 @@ data class ProductsItem(
 	val unitPrice: String? = null,
 
 	@field:SerializedName("unit_count")
-	val unitCount: Int? = null
+	val unitCount: Int? = null,
+
+	@field:SerializedName("product_details")
+	val productDetails: ProductDetails? = null,
+
+	@field:SerializedName("about_product")
+	val aboutProduct: List<String?>? = null,
+
+	@field:SerializedName("product_description")
+	val productDescription: Any? = null
 )
 
 data class Parameters(
@@ -104,6 +113,36 @@ data class Parameters(
 	val brand: List<String?>? = null
 )
 
+data class BestSellersItem(
+
+	@field:SerializedName("product_star_rating")
+	val productStarRating: String? = null,
+
+	@field:SerializedName("product_url")
+	val productUrl: String? = null,
+
+	@field:SerializedName("rank")
+	val rank: Int? = null,
+
+	@field:SerializedName("product_num_ratings")
+	val productNumRatings: Int? = null,
+
+	@field:SerializedName("asin")
+	val asin: String? = null,
+
+	@field:SerializedName("product_price")
+	val productPrice: String? = null,
+
+	@field:SerializedName("rank_change_label")
+	val rankChangeLabel: Any? = null,
+
+	@field:SerializedName("product_title")
+	val productTitle: String? = null,
+
+	@field:SerializedName("product_photo")
+	val productPhoto: String? = null
+)
+
 data class Data(
 
 	@field:SerializedName("country")
@@ -116,5 +155,25 @@ data class Data(
 	val totalProducts: Int? = null,
 
 	@field:SerializedName("products")
-	val products: List<ProductsItem?>? = null
+	val products: List<ProductsItem?>? = null,
+
+	@field:SerializedName("best_sellers")
+    val bestSellers: List<BestSellersItem?>? = null
+)
+data class ProductDetails(
+
+	@field:SerializedName("Brand")
+	val brand: String? = null,
+
+	@field:SerializedName("Are Batteries Included")
+	val areBatteriesIncluded: String? = null,
+
+	@field:SerializedName("Compatible Devices")
+	val compatibleDevices: String? = null,
+
+	@field:SerializedName("Number of Batteries")
+	val numberOfBatteries: String? = null,
+
+	@field:SerializedName("Item Weight")
+	val itemWeight: String? = null
 )

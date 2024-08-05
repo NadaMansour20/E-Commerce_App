@@ -7,5 +7,7 @@ import com.android.e_commerce_app.ui.api.ProductsItem
 open class BaseViewModel:ViewModel() {
 
 
-    var list_liveData= MutableLiveData<List<ProductsItem?>?>()
+    var product_list_liveData= MutableLiveData<List<ProductsItem?>?>()
+    var bestseller_list_liveData= MutableLiveData<List<ProductsItem?>?>()
+
 }

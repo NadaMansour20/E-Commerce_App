@@ -8,31 +8,66 @@ import kotlinx.coroutines.launch
 class HomeFragmentViewModel :BaseViewModel() {
 
 
-    fun get_productBySearch(query: String) {
+//    fun get_productBySearch(query: String) {
+//
+//        viewModelScope.launch{
+//            try {
+//
+//                val result =BuildRetrofit.get_api().get_productBySearch(query)
+//
+//                if(result.data?.products!=null) {
+//                    Log.e("HomeFragmentViewModel", "API response: $result")
+//
+//                    Log.e("Responseeeeeeeeeeeeee","Correcttt")
+//                    product_list_liveData.value = result.data.products
+//                }
+//                else{
+//                    Log.e("Responseeeeeeeeeeeeee","NUlllllllllll")
+//
+//                }
+//
+//            }catch (ex:Exception){
+//                Log.e("Responseeeeeeeeeeeeee",ex.message.toString())
+//
+//
+//            }
+//
+//        }
+//    }
 
-        viewModelScope.launch{
+    fun get_best_Seller(type:String,category:String){
+
+
+        viewModelScope.launch {
+
             try {
 
-                val result =BuildRetrofit.get_api().get_productBySearch(query)
+                val result=BuildRetrofit.get_api().get_bestSellerApi(type,category)
 
-                if(result.data?.products!=null) {
-                    Log.d("HomeFragmentViewModel", "API response: $result")
+                for(i in 0..result.data?.products!!.size) {
 
-                    Log.e("Responseeeeeeeeeeeeee","Correcttt")
-                    list_liveData.value = result.data?.products
-                }
-                else{
-                    Log.e("Responseeeeeeeeeeeeee","NUlllllllllll")
+                    if (result.data.products.get(i)?.isBestSeller == true) {
 
+                        bestseller_list_liveData.value = listOf(result.data.products.get(i))
+
+                        Log.e("Besttttttttt seller","Correcttt")
+
+                        Log.e("Best sellerrrrr", "API response: ${ result.data.products.get(i)}")
+
+
+                    }
                 }
 
             }catch (ex:Exception){
-                Log.e("Responseeeeeeeeeeeeee",ex.message.toString())
+
+                Log.e("Besttttttttt seller",ex.message.toString())
 
 
             }
 
+
         }
+
     }
 
 }

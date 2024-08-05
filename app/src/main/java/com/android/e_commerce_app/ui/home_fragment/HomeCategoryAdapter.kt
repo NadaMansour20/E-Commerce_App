@@ -36,7 +36,7 @@ class HomeCategoryAdapter(var items:List<ProductsItem?>?) :Adapter<HomeCategoryA
     var cn=1
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item: ProductsItem? = items!!.get(position)
+        val item: ProductsItem? = items?.get(position)
         holder.bind(item)
 
         // click to add product in like list
