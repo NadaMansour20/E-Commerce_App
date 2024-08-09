@@ -67,6 +67,7 @@
                 android:layout_margin="20dp"
                 style="@style/TEXT"
                 android:backgroundTint="@color/roze"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

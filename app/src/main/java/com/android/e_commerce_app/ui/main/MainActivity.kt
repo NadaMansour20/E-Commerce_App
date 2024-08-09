@@ -25,6 +25,8 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
 
         dataBinding.hvm=viewModel
 
+        PushFragmnet(homeFragment)
+
         dataBinding.buttonnavigation.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener{
 
             if(it.itemId==R.id.home){

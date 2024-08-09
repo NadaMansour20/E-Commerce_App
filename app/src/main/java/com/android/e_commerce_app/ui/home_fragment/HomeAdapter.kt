@@ -10,7 +10,7 @@ import com.android.e_commerce_app.databinding.ItemDesignBinding
 import com.android.e_commerce_app.ui.ClickListener
 import com.android.e_commerce_app.ui.api.ProductsItem
 
-class HomeCategoryAdapter(var items:List<ProductsItem?>?) :Adapter<HomeCategoryAdapter.ItemViewHolder>(){
+class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewHolder>(){
 
 
     var fav_onclick:ClickListener?=null
