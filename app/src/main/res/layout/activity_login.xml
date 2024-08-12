@@ -35,11 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:error="@{lvm.emailError}"
           >
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_your_email_to_continue"
+                android:text="@={lvm.email}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,12 +53,13 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="10dp"
+            android:onClick="@{()->lvm.register()}"
             style="@style/TEXT"
             android:backgroundTint="@color/roze"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OR"
+                android:text="@string/or"
                 android:textAlignment="center"
                 android:textColor="@color/black"/>
             <Button
