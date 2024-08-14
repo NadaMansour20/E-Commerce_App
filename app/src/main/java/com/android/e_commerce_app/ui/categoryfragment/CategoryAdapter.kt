@@ -43,7 +43,7 @@ class CategoryAdapter(var list:List<CategoryResponseItem?>?):Adapter<CategoryAda
 
         if(categoryListener!=null){
 
-            holder.category.categoryItem.setOnClickListener {
+            holder.category.categoryName.setOnClickListener {
 
                 categoryListener!!.categoryClick(position,item?.name)
             }
