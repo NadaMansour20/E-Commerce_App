@@ -48,6 +48,7 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -67,13 +68,16 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-analytics")
-
-    //email_authentication & google
-    implementation("com.google.android.gms:play-services-auth:21.2.0")
-    
     implementation("com.google.firebase:firebase-auth")
+
+    //fire store
+    implementation("com.google.firebase:firebase-firestore")
+
+    //authenticate by google
+    implementation ("com.google.android.gms:play-services-auth:20.2.0")
+
 
 
 

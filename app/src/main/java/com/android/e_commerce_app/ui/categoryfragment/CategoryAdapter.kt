@@ -1,4 +1,4 @@
-package com.android.e_commerce_app.ui.home_fragment
+package com.android.e_commerce_app.ui.categoryfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.CategoryItemBinding
-import com.android.e_commerce_app.ui.api.DataItem
+import com.android.e_commerce_app.ui.CategoryClickListener
+import com.android.e_commerce_app.ui.api.CategoryResponseItem
 
-class CategoryAdapter(var list:List<DataItem?>?):Adapter<CategoryAdapter.CategoryViewHolde>() {
+class CategoryAdapter(var list:List<CategoryResponseItem?>?):Adapter<CategoryAdapter.CategoryViewHolde>() {
+
+    var categoryListener:CategoryClickListener?=null
 
     class CategoryViewHolde(val category:CategoryItemBinding):ViewHolder(category.root){
 
-        fun bind(list:DataItem?){
+        fun bind(list:CategoryResponseItem?){
             category.cvm=list
             category.invalidateAll()
 
@@ -34,13 +37,24 @@ class CategoryAdapter(var list:List<DataItem?>?):Adapter<CategoryAdapter.Categor
 
     override fun onBindViewHolder(holder: CategoryViewHolde, position: Int) {
 
-        val item: DataItem? =list!!.get(position)
-
+        val item: CategoryResponseItem? =list!!.get(position)
         holder.bind(item)
+
+
+        if(categoryListener!=null){
+
+            holder.category.categoryItem.setOnClickListener {
+
+                categoryListener!!.categoryClick(position,item?.name)
+            }
+
+        }
+
+
     }
 
 
-    fun notify(item:List<DataItem?>?){
+    fun notify(item:List<CategoryResponseItem?>?){
         list=item
         notifyDataSetChanged()
     }

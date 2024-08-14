@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ActivityLoginBinding
 import com.android.final_app.Base.BaseActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
@@ -25,4 +27,6 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
     override fun get_view_model(): LoginViewModel {
         return ViewModelProvider(this).get(LoginViewModel::class.java)
     }
+
+
 }

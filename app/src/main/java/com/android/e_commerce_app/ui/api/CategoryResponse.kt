@@ -4,23 +4,18 @@ import com.google.gson.annotations.SerializedName
 
 data class CategoryResponse(
 
-	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
-
-	@field:SerializedName("request_id")
-	val requestId: String? = null,
-
-	@field:SerializedName("parameters")
-	val parameters: Parameters? = null,
-
-	@field:SerializedName("status")
-	val status: String? = null
+	@field:SerializedName("CategoryResponse")
+	val categoryResponse: List<CategoryResponseItem?>? = null
 )
-data class DataItem(
+
+data class CategoryResponseItem(
 
 	@field:SerializedName("name")
 	val name: String? = null,
 
-	@field:SerializedName("id")
-	val id: String? = null
+	@field:SerializedName("slug")
+	val slug: String? = null,
+
+	@field:SerializedName("url")
+	val url: String? = null
 )

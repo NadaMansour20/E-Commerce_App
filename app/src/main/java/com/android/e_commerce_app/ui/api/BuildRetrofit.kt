@@ -1,5 +1,6 @@
 package com.android.e_commerce_app.ui.api
 
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -25,7 +26,6 @@ class BuildRetrofit {
 
             return build_retrofit().create(WebServices::class.java)
         }
-
 
 
 

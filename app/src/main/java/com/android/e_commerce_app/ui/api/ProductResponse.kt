@@ -4,176 +4,129 @@ import com.google.gson.annotations.SerializedName
 
 data class ProductResponse(
 
-	@field:SerializedName("data")
-	val data: Data? = null,
+	@field:SerializedName("total")
+	val total: Int? = null,
 
-	@field:SerializedName("request_id")
-	val requestId: String? = null,
+	@field:SerializedName("limit")
+	val limit: Int? = null,
 
-	@field:SerializedName("parameters")
-	val parameters: Parameters? = null,
+	@field:SerializedName("skip")
+	val skip: Int? = null,
 
-	@field:SerializedName("status")
-	val status: String? = null
+	@field:SerializedName("products")
+	val products: List<ProductsItem?>? = null
 )
 
 data class ProductsItem(
 
-	@field:SerializedName("delivery")
-	val delivery: String? = null,
+	@field:SerializedName("images")
+	val images: List<String?>? = null,
 
-	@field:SerializedName("product_star_rating")
-	val productStarRating: String? = null,
+	@field:SerializedName("thumbnail")
+	val thumbnail: String? = null,
 
-	@field:SerializedName("product_minimum_offer_price")
-	val productMinimumOfferPrice: String? = null,
+	@field:SerializedName("minimumOrderQuantity")
+	val minimumOrderQuantity: Int? = null,
 
-	@field:SerializedName("product_url")
-	val productUrl: String? = null,
+	@field:SerializedName("rating")
+	val rating: Any? = null,
 
-	@field:SerializedName("has_variations")
-	val hasVariations: Boolean? = null,
+	@field:SerializedName("returnPolicy")
+	val returnPolicy: String? = null,
 
-	@field:SerializedName("product_num_ratings")
-	val productNumRatings: Int? = null,
+	@field:SerializedName("description")
+	val description: String? = null,
 
-	@field:SerializedName("product_price")
-	val productPrice: String? = null,
+	@field:SerializedName("weight")
+	val weight: Int? = null,
 
-	@field:SerializedName("product_title")
-	val productTitle: String? = null,
+	@field:SerializedName("warrantyInformation")
+	val warrantyInformation: String? = null,
 
-	@field:SerializedName("is_prime")
-	val isPrime: Boolean? = null,
+	@field:SerializedName("title")
+	val title: String? = null,
 
-	@field:SerializedName("product_photo")
-	val productPhoto: String? = null,
+	@field:SerializedName("tags")
+	val tags: List<String?>? = null,
 
-	@field:SerializedName("product_num_offers")
-	val productNumOffers: Int? = null,
+	@field:SerializedName("discountPercentage")
+	val discountPercentage: Any? = null,
 
-	@field:SerializedName("climate_pledge_friendly")
-	val climatePledgeFriendly: Boolean? = null,
+	@field:SerializedName("reviews")
+	val reviews: List<ReviewsItem?>? = null,
 
-	@field:SerializedName("asin")
-	val asin: String? = null,
+	@field:SerializedName("price")
+	val price: Any? = null,
 
-	@field:SerializedName("currency")
-	val currency: String? = null,
+	@field:SerializedName("meta")
+	val meta: Meta? = null,
 
-	@field:SerializedName("is_amazon_choice")
-	val isAmazonChoice: Boolean? = null,
+	@field:SerializedName("shippingInformation")
+	val shippingInformation: String? = null,
 
-	@field:SerializedName("product_original_price")
-	val productOriginalPrice: String? = null,
+	@field:SerializedName("id")
+	val id: Int? = null,
 
-	@field:SerializedName("is_best_seller")
-	val isBestSeller: Boolean? = null,
+	@field:SerializedName("availabilityStatus")
+	val availabilityStatus: String? = null,
 
-	@field:SerializedName("sales_volume")
-	val salesVolume: String? = null,
+	@field:SerializedName("category")
+	val category: String? = null,
 
-	@field:SerializedName("unit_price")
-	val unitPrice: String? = null,
+	@field:SerializedName("stock")
+	val stock: Int? = null,
 
-	@field:SerializedName("unit_count")
-	val unitCount: Int? = null,
-
-	@field:SerializedName("product_details")
-	val productDetails: ProductDetails? = null,
-
-	@field:SerializedName("about_product")
-	val aboutProduct: List<String?>? = null,
-
-	@field:SerializedName("product_description")
-	val productDescription: Any? = null
-)
-
-data class Parameters(
-
-	@field:SerializedName("country")
-	val country: String? = null,
-
-	@field:SerializedName("max_price")
-	val maxPrice: Int? = null,
-
-	@field:SerializedName("category_id")
-	val categoryId: String? = null,
-
-	@field:SerializedName("min_price")
-	val minPrice: Int? = null,
-
-	@field:SerializedName("sort_by")
-	val sortBy: String? = null,
-
-	@field:SerializedName("page")
-	val page: Int? = null,
+	@field:SerializedName("sku")
+	val sku: String? = null,
 
 	@field:SerializedName("brand")
-	val brand: List<String?>? = null
-)
-
-data class BestSellersItem(
-
-	@field:SerializedName("product_star_rating")
-	val productStarRating: String? = null,
-
-	@field:SerializedName("product_url")
-	val productUrl: String? = null,
-
-	@field:SerializedName("rank")
-	val rank: Int? = null,
-
-	@field:SerializedName("product_num_ratings")
-	val productNumRatings: Int? = null,
-
-	@field:SerializedName("asin")
-	val asin: String? = null,
-
-	@field:SerializedName("product_price")
-	val productPrice: String? = null,
-
-	@field:SerializedName("rank_change_label")
-	val rankChangeLabel: Any? = null,
-
-	@field:SerializedName("product_title")
-	val productTitle: String? = null,
-
-	@field:SerializedName("product_photo")
-	val productPhoto: String? = null
-)
-
-data class Data(
-
-	@field:SerializedName("country")
-	val country: String? = null,
-
-	@field:SerializedName("domain")
-	val domain: String? = null,
-
-	@field:SerializedName("total_products")
-	val totalProducts: Int? = null,
-
-	@field:SerializedName("products")
-	val products: List<ProductsItem?>? = null,
-
-	@field:SerializedName("best_sellers")
-    val bestSellers: List<BestSellersItem?>? = null
-)
-data class ProductDetails(
-
-	@field:SerializedName("Brand")
 	val brand: String? = null,
 
-	@field:SerializedName("Are Batteries Included")
-	val areBatteriesIncluded: String? = null,
+	@field:SerializedName("dimensions")
+	val dimensions: Dimensions? = null
+)
 
-	@field:SerializedName("Compatible Devices")
-	val compatibleDevices: String? = null,
+data class Dimensions(
 
-	@field:SerializedName("Number of Batteries")
-	val numberOfBatteries: String? = null,
+	@field:SerializedName("depth")
+	val depth: Any? = null,
 
-	@field:SerializedName("Item Weight")
-	val itemWeight: String? = null
+	@field:SerializedName("width")
+	val width: Any? = null,
+
+	@field:SerializedName("height")
+	val height: Any? = null
+)
+
+data class Meta(
+
+	@field:SerializedName("createdAt")
+	val createdAt: String? = null,
+
+	@field:SerializedName("qrCode")
+	val qrCode: String? = null,
+
+	@field:SerializedName("barcode")
+	val barcode: String? = null,
+
+	@field:SerializedName("updatedAt")
+	val updatedAt: String? = null
+)
+
+data class ReviewsItem(
+
+	@field:SerializedName("date")
+	val date: String? = null,
+
+	@field:SerializedName("reviewerName")
+	val reviewerName: String? = null,
+
+	@field:SerializedName("reviewerEmail")
+	val reviewerEmail: String? = null,
+
+	@field:SerializedName("rating")
+	val rating: Int? = null,
+
+	@field:SerializedName("comment")
+	val comment: String? = null
 )

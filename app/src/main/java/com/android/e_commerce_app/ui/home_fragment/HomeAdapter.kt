@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ItemDesignBinding
-import com.android.e_commerce_app.ui.ClickListener
+import com.android.e_commerce_app.ui.FavClickListener
 import com.android.e_commerce_app.ui.api.ProductsItem
 
 class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewHolder>(){
 
 
-    var fav_onclick:ClickListener?=null
+    var fav_onclick: FavClickListener?=null
 
     class ItemViewHolder(var homeBinding:ItemDesignBinding):ViewHolder(homeBinding.root){
         fun bind(itemBinding: ProductsItem?){
@@ -33,7 +33,7 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
         return items?.size?:0
     }
 
-    var cn=1
+    var cn=0
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item: ProductsItem? = items?.get(position)
@@ -46,7 +46,7 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
 
                     fav_onclick?.add_FavClick(position, items!![position])
 
-                    if(cn%2!=0) {
+                    if(cn%2==0) {
 
                         holder.homeBinding.addToFavBtn.setImageResource(R.drawable.blacklike)
                     }

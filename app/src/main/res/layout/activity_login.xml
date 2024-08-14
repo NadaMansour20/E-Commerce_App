@@ -45,6 +45,20 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:error="@{lvm.passError}"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_your_password_to_continue"
+                    android:text="@={lvm.pass}"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,25 +76,57 @@
                 android:text="@string/or"
                 android:textAlignment="center"
                 android:textColor="@color/black"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/continue_with_google"
-                android:padding="10dp"
-                android:layout_margin="20dp"
-                style="@style/TEXT"
-                android:backgroundTint="@color/roze"/>
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/continue_with_facebook"
-                style="@style/TEXT"
-                android:backgroundTint="@color/roze"/>
+                android:layout_margin="20dp"
+                android:background="@drawable/buttonborder"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/googleicon"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/continue_with_google"
+                    android:padding="10dp"
+                    android:layout_marginStart="16dp"
+                    style="@style/TEXT"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/buttonborder"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/facebookicon"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/continue_with_facebook"
+                    android:padding="10dp"
+                    android:layout_marginStart="16dp"
+                    style="@style/TEXT"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"

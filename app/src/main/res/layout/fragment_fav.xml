@@ -15,14 +15,13 @@
         android:layout_height="match_parent"
         tools:context=".ui.favfragment.FavFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/favourites"
-            android:textSize="30sp"
-            android:layout_margin="20dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            tools:listitem="@layout/item_design_fav"/>
 
 
 

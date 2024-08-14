@@ -9,63 +9,29 @@ import kotlinx.coroutines.launch
 class HomeFragmentViewModel :BaseViewModel() {
 
 
-    fun get_productBySearch(query: String) {
+    fun get_all_product(){
+
         progress.value=true
-
-        viewModelScope.launch{
-            try {
-
-                val result =BuildRetrofit.get_api().get_productBySearch(query)
-                progress.value=false
-
-                if(result.data?.products!=null) {
-                    Log.e("HomeFragmentViewModel", "API response: $result")
-
-                    Log.e("Responseeeeeeeeeeeeee","Correcttt")
-                    search_item.value = result.data.products
-                }
-                else{
-
-                    Log.e("Responseeeeeeeeeeeeee","NUlllllllllll")
-
-                }
-
-            }catch (ex:Exception){
-                Log.e("Responseeeeeeeeeeeeee",ex.message.toString())
-                progress.value=false
-
-
-            }
-
-        }
-    }
-
-    fun get_best_Seller(type:String,category:String){
-
-
         viewModelScope.launch {
 
             try {
 
-                val result=BuildRetrofit.get_api().get_bestSellerApi(type,category)
+                val result=BuildRetrofit.get_api().get_allProduct()
 
-                for(i in 0..result.data?.products!!.size) {
+                if(result.products!=null){
+                    progress.value=false
 
-                    if (result.data.products.get(i)?.isBestSeller == true) {
+                    all_products.value=result.products
 
-                        bestseller_list_liveData.value = listOf(result.data.products.get(i))
-
-                        Log.e("Besttttttttt seller","Correcttt")
-
-                        Log.e("Best sellerrrrr", "API response: ${ result.data.products.get(i)}")
+                        Log.e("all product", "Correcttttt API response: ${ result.products}")
 
 
                     }
-                }
 
             }catch (ex:Exception){
+                progress.value=false
 
-                Log.e("Besttttttttt seller",ex.message.toString())
+                Log.e("all product",ex.message.toString())
 
 
             }
@@ -73,37 +39,6 @@ class HomeFragmentViewModel :BaseViewModel() {
 
         }
 
-    }
-
-
-    fun get_Category(){
-
-        viewModelScope.launch {
-
-            try {
-
-                var result=BuildRetrofit.get_api().get_category()
-
-                if(result.data!=null){
-
-                    categorys.value=result.data
-
-                    Log.e("Categoryssssssssssssss","Correctttttt+${result.data}")
-                }
-                else{
-
-                    Log.e("Categoryssssssssssssss","Nullllllllll")
-
-                }
-
-
-
-            }catch (ex:Exception){
-
-                Log.e("Categoryssssssssssssss",ex.message.toString())
-
-            }
-        }
     }
 
 }
