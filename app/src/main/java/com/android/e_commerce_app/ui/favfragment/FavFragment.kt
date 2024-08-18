@@ -1,15 +1,15 @@
 package com.android.e_commerce_app.ui.favfragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.FragmentFavBinding
-import com.android.e_commerce_app.ui.FavClickListener
+import com.android.e_commerce_app.ui.ClickListener
 import com.android.e_commerce_app.ui.api.ProductsItem
-import com.android.e_commerce_app.ui.home_fragment.HomeAdapter
 
 class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 //
@@ -18,21 +18,43 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 //    }
 
 
-    var favAdapter=HomeAdapter(null)
+    var favAdapter=FavAdapter(null)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         databinding.ffvm=viewModel
 
+        databinding.favRecyclerview.adapter=favAdapter
 
-        favAdapter.fav_onclick=object: FavClickListener {
-            override fun add_FavClick(position: Int, itemCategory: ProductsItem?) {
+        viewModel.getFavProducts()
+        observeData()
 
-                // Toast.makeText(requireContext(), "nadaaaaaaaaaa", Toast.LENGTH_SHORT).show()
+        favAdapter.product_Clicked=object :ClickListener{
+            override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun add_Item(item: ProductsItem?, add: Int?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun add_Cart(item: ProductsItem?) {
+
+                val Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,
+                    item?.title,item?.price,item?.id!!)
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+
 
             }
 
+            override fun add_minesButton(item: ProductsItem?, add: Int?) {
+                TODO("Not yet implemented")
+            }
+
         }
+
 
     }
 
@@ -45,6 +67,15 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
     override fun get_viewModel(): FavViewModel {
         return ViewModelProvider(this).get(FavViewModel::class.java)
+    }
+
+    fun observeData(){
+
+        viewModel.favItems.observe(viewLifecycleOwner, Observer {
+
+            favAdapter.notify(it)
+        })
+
     }
 
 

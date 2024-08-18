@@ -1,7 +1,6 @@
 package com.android.e_commerce_app.ui.searchfragment
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.ui.api.BuildRetrofit
@@ -11,13 +10,13 @@ class SearchViewModel :BaseViewModel() {
 
 
 
-    fun get_productBySearch(query: String) {
+    fun get_productBySearch(query: String?) {
         progress.value=true
 
         viewModelScope.launch{
             try {
 
-                val result = BuildRetrofit.get_api().get_productBySearch(query)
+                val result = BuildRetrofit.get_api().get_productBySearch(query!!)
                 progress.value=false
 
                 if(result.products!=null) {

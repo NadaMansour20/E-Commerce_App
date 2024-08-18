@@ -1,15 +1,16 @@
 package com.android.e_commerce_app.ui.searchfragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.FragmentSearchBinding
-import com.android.e_commerce_app.ui.FavClickListener
+import com.android.e_commerce_app.ui.ClickListener
 import com.android.e_commerce_app.ui.api.ProductsItem
 import com.android.e_commerce_app.ui.home_fragment.HomeAdapter
 
@@ -30,7 +31,6 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
         data_observation()
 
 
-        databinding.searchRecyclerView.adapter=searchAdapter
 
 
         // the action that taken when click on search_view
@@ -39,26 +39,92 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
                 //fetch data from api
                 viewModel.get_productBySearch(query!!)
+                databinding.searchRecyclerView.adapter=searchAdapter
+
                 return true
 
 
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText.isNullOrBlank()){
+
+                    viewModel.get_productBySearch(null)
+                    databinding.searchRecyclerView.adapter=null
+                    //Log.e("Nullllllllllll","Nulllllllll")
+
+                }
                 return false
 
             }
 
         })
 
-        searchAdapter.fav_onclick=object: FavClickListener {
-            override fun add_FavClick(position: Int, itemCategory: ProductsItem?) {
+        searchAdapter.product_Clicked=object : ClickListener {
 
-                // Toast.makeText(requireContext(), "nadaaaaaaaaaa", Toast.LENGTH_SHORT).show()
+            lateinit var Product: ProductsItem
+
+
+            override fun add_FavClick(position: Int, item: ProductsItem?, flag:Int) {
+
+
+                if(flag%2==0) {
+                    Product = ProductsItem(true,item?.addNumber,item?.addToCart,item?.thumbnail,
+                        item?.title,item?.price,item?.id!!)
+                }
+                else{
+                    Product = ProductsItem(false,item?.addNumber,item?.addToCart,item?.thumbnail,
+                        item?.title,item?.price,item?.id!!)
+
+                }
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+               // var get_product= MyDataBase.getInstance(context!!).productDao().getProduct(item.id)
+                var fav_products= MyDataBase.getDataBase().productDao().getFavProduct(true)
+
+
+               // Log.e("Favvvvvvvvvvvvvvvv","correctttttt${fav_products}")
+
+
 
             }
 
+            override fun add_Item(item: ProductsItem?, add: Int?) {
+
+                Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,
+                    item?.title,item?.price,item?.id!!)
+
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                var get_product= MyDataBase.getDataBase().productDao().getProduct(item.id)
+
+               // Log.e("addItemmmmmmmmmmmmmm","correctttttt${get_product}")
+
+            }
+
+            override fun add_Cart(item: ProductsItem?) {
+
+                Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,
+                    item?.title,item?.price,item?.id!!)
+
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                var get_product= MyDataBase.getDataBase().productDao().getCartProduct(true)
+
+                //Log.e("addCarttttttttt","correctttttt${get_product}")
+
+            }
+
+            override fun add_minesButton(item: ProductsItem?,add:Int?) {
+                TODO("Not yet implemented")
+            }
+
         }
+
+
     }
 
 
@@ -83,6 +149,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
             databinding.animationImg.isVisible=false
 
+            databinding.productNotFound.isVisible = it.isNullOrEmpty()
             data_recieved=true
 
         })

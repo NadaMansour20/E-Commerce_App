@@ -15,18 +15,11 @@ class CategoryViewModel :BaseViewModel() {
 
             try {
 
-                var result= BuildRetrofit.get_api().get_category()
+                val result= BuildRetrofit.get_api().get_category()
 
-                if(result!=null){
-                    categorys.value=result
+                categorys.value=result
 
-                    Log.e("Categoryssssssssssssss","Correctttttt${result}")
-                }
-                else{
-
-                    Log.e("Categoryssssssssssssss","Nullllllllll")
-
-                }
+                Log.e("Categoryssssssssssssss","Correctttttt${result}")
 
 
             }catch (ex:Exception){
@@ -37,7 +30,7 @@ class CategoryViewModel :BaseViewModel() {
         }
     }
 
-    fun get_product_by_category(category_id:String){
+    fun get_product_by_category(category_name:String){
 
         progress.value=true
 
@@ -45,14 +38,23 @@ class CategoryViewModel :BaseViewModel() {
 
             try {
 
-                val result= BuildRetrofit.get_api().get_products_byCategory(category_id)
+                val result= BuildRetrofit.get_api().get_products_byCategory(category_name)
 
-                if(result.products!=null){
+                if(result.products.isNullOrEmpty()){
+
+                    isEmptyOrNot.value=category_name
+                    Log.e("Product By Categoryyyyyyyyyy","Emptyyyyyy")
+
+
+                }
+                else{
+
                     progress.value=false
 
                     product_by_category.value=result.products
 
                     Log.e("Product By Categoryyyyyyyyyy","Correct+${result.products}")
+
                 }
 
 

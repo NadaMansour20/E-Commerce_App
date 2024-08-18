@@ -1,4 +1,4 @@
-package com.android.e_commerce_app.ui.home_fragment
+package com.android.e_commerce_app.ui.cartfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.e_commerce_app.R
-import com.android.e_commerce_app.databinding.ItemDesignBinding
+import com.android.e_commerce_app.databinding.ItemDesignCartBinding
 import com.android.e_commerce_app.ui.ClickListener
 import com.android.e_commerce_app.ui.api.ProductsItem
 
-class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewHolder>(){
+class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewHolder>(){
 
 
     var product_Clicked:ClickListener?=null
@@ -19,21 +19,22 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
 
 
     //holder is the special object to each item in recycler_view
-    class ItemViewHolder(var homeBinding:ItemDesignBinding):ViewHolder(homeBinding.root){
+    class ItemViewHolder(var homeBinding:ItemDesignCartBinding):ViewHolder(homeBinding.root){
 
-        var cn=1
         var cnAdd=0
+        var sum=0
+
 
         fun bind(itemBinding: ProductsItem?){
-            homeBinding.itemDesign=itemBinding
+            homeBinding.cartvm=itemBinding
             homeBinding.invalidateAll()  //to check all items is bind
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val viewBinding:ItemDesignBinding=DataBindingUtil.
-        inflate(LayoutInflater.from(parent.context),R.layout.item_design,parent,false)
+        val viewBinding:ItemDesignCartBinding=DataBindingUtil.
+        inflate(LayoutInflater.from(parent.context),R.layout.item_design_cart,parent,false)
         return ItemViewHolder(viewBinding)
     }
 
@@ -52,33 +53,34 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
         // click to add product in like list
             if(product_Clicked!=null){
 
-                holder.homeBinding.addToFavBtn.setOnClickListener {
 
-                    holder.cn++
+                holder.homeBinding.minesImageButton.setOnClickListener {
 
-                    product_Clicked?.add_FavClick(position, items!![position],holder.cn)
+                    holder.cnAdd--
 
-                    if(holder.cn%2==0) {
+                    holder.sum+=holder.cnAdd
 
-                        holder.homeBinding.addToFavBtn.setImageResource(R.drawable.blacklike)
-                    }
-                    else{
-                        holder.homeBinding.addToFavBtn.setImageResource(R.drawable.like)
-                    }
-                }
+                    holder.homeBinding.numOfAddOrMines.text=holder.cnAdd.toString()
 
-                holder.homeBinding.addToCart.setOnClickListener {
 
-                    product_Clicked?.add_Cart(items!![position])
-                }
-
-                holder.homeBinding.addButton.setOnClickListener {
-
-                    holder.cnAdd++
                     product_Clicked?.add_Item(items!![position],holder.cnAdd)
                 }
 
+                holder.homeBinding.addImageButton.setOnClickListener {
+
+                    holder.cnAdd++
+
+                   holder.sum+=holder.cnAdd
+
+                    holder.homeBinding.numOfAddOrMines.text=holder.cnAdd.toString()
+
+                    product_Clicked?.add_Item(items!![position],holder.cnAdd)
+                }
+
+
             }
+
+
 
 
     }

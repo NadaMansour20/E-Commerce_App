@@ -1,9 +1,8 @@
 package com.android.e_commerce_app
 
 import android.app.Application
+import com.android.e_commerce_app.database.MyDataBase
 import com.google.firebase.FirebaseApp
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.initialize
 
 class MyApplication:Application() {
 
@@ -11,5 +10,7 @@ class MyApplication:Application() {
         super.onCreate()
 
         FirebaseApp.initializeApp(this)
+
+        MyDataBase.getInstance(this)
     }
 }

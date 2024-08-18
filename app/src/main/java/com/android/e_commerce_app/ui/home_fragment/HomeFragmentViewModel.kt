@@ -1,6 +1,5 @@
 package com.android.e_commerce_app.ui.home_fragment
 import android.util.Log
-import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.ui.api.BuildRetrofit
@@ -22,6 +21,7 @@ class HomeFragmentViewModel :BaseViewModel() {
                     progress.value=false
 
                     all_products.value=result.products
+
 
                         Log.e("all product", "Correcttttt API response: ${ result.products}")
 

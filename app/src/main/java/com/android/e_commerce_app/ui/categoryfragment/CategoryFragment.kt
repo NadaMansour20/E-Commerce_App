@@ -1,17 +1,12 @@
 package com.android.e_commerce_app.ui.categoryfragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.get
+import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
-import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.databinding.FragmentCategoryBinding
 import com.android.e_commerce_app.ui.CategoryClickListener
 import com.android.e_commerce_app.ui.home_fragment.HomeAdapter
@@ -58,15 +53,18 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
         return ViewModelProvider(this).get(CategoryViewModel::class.java)
     }
 
+
     fun observation(){
 
         viewModel.product_by_category.observe(viewLifecycleOwner, Observer {
             homeAdapter.notify(it)
         })
 
-        viewModel.categorys.observe(viewLifecycleOwner, Observer {
+        viewModel.categorys.observe(viewLifecycleOwner, Observer {category->
 
-            categoryAdapter.notify(it)
+
+            categoryAdapter.notify(category)
+
         })
 
         viewModel.progress.observe(viewLifecycleOwner, Observer {

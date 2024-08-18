@@ -1,5 +1,8 @@
 package com.android.e_commerce_app.ui.api
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class ProductResponse(
@@ -17,73 +20,107 @@ data class ProductResponse(
 	val products: List<ProductsItem?>? = null
 )
 
+
+@Entity
 data class ProductsItem(
 
-	@field:SerializedName("images")
-	val images: List<String?>? = null,
+	@ColumnInfo
+	val favOrNot:Boolean?=null,
 
+	@ColumnInfo
+	val addNumber:Int?=null,
+
+	@ColumnInfo
+	val addToCart:Boolean?=null,
+
+//	@ColumnInfo
+//	@field:SerializedName("images")
+//	val images: List<String?>? = null,
+
+	@ColumnInfo
 	@field:SerializedName("thumbnail")
 	val thumbnail: String? = null,
 
-	@field:SerializedName("minimumOrderQuantity")
-	val minimumOrderQuantity: Int? = null,
+//	@ColumnInfo
+//	@field:SerializedName("minimumOrderQuantity")
+//	val minimumOrderQuantity: Int? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("rating")
+//	val rating: Any? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("returnPolicy")
+//	val returnPolicy: String? = null,
 
-	@field:SerializedName("rating")
-	val rating: Any? = null,
+//	@ColumnInfo
+//	@field:SerializedName("description")
+//	val description: String? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("weight")
+//	val weight: Int? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("warrantyInformation")
+//	val warrantyInformation: String? = null,
 
-	@field:SerializedName("returnPolicy")
-	val returnPolicy: String? = null,
-
-	@field:SerializedName("description")
-	val description: String? = null,
-
-	@field:SerializedName("weight")
-	val weight: Int? = null,
-
-	@field:SerializedName("warrantyInformation")
-	val warrantyInformation: String? = null,
-
+	@ColumnInfo
 	@field:SerializedName("title")
 	val title: String? = null,
 
-	@field:SerializedName("tags")
-	val tags: List<String?>? = null,
+//	@ColumnInfo
+//	@field:SerializedName("tags")
+//	val tags: List<String?>? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("discountPercentage")
+//	val discountPercentage: Any? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("reviews")
+//	val reviews: List<ReviewsItem?>? = null,
 
-	@field:SerializedName("discountPercentage")
-	val discountPercentage: Any? = null,
-
-	@field:SerializedName("reviews")
-	val reviews: List<ReviewsItem?>? = null,
-
+	@ColumnInfo
 	@field:SerializedName("price")
-	val price: Any? = null,
+	val price:Double? = null,
 
-	@field:SerializedName("meta")
-	val meta: Meta? = null,
+//	@ColumnInfo
+//	@field:SerializedName("meta")
+//	val meta: Meta? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("shippingInformation")
+//	val shippingInformation: String? = null,
 
-	@field:SerializedName("shippingInformation")
-	val shippingInformation: String? = null,
-
+	@ColumnInfo
+	@PrimaryKey
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
-	@field:SerializedName("availabilityStatus")
-	val availabilityStatus: String? = null,
-
-	@field:SerializedName("category")
-	val category: String? = null,
-
-	@field:SerializedName("stock")
-	val stock: Int? = null,
-
-	@field:SerializedName("sku")
-	val sku: String? = null,
-
-	@field:SerializedName("brand")
-	val brand: String? = null,
-
-	@field:SerializedName("dimensions")
-	val dimensions: Dimensions? = null
+//	@ColumnInfo
+//	@field:SerializedName("availabilityStatus")
+//	val availabilityStatus: String? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("category")
+//	val category: String? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("stock")
+//	val stock: Int? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("sku")
+//	val sku: String? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("brand")
+//	val brand: String? = null,
+//
+//	@ColumnInfo
+//	@field:SerializedName("dimensions")
+//	val dimensions: Dimensions? = null
 )
 
 data class Dimensions(
