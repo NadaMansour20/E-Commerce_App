@@ -1,19 +1,11 @@
 package com.android.e_commerce_app.ui.login
 
-import android.content.Context
-import android.provider.Settings.Secure.getString
-import android.util.Log
-import android.widget.Toast
 import androidx.databinding.ObservableField
-import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseViewModel
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.android.e_commerce_app.database.Entity1
+import com.android.e_commerce_app.database.MyDataBase
 
-class LoginViewModel:BaseViewModel() {
+class LoginViewModel: BaseViewModel() {
 
 
     var Email= ObservableField<String>()
@@ -25,43 +17,45 @@ class LoginViewModel:BaseViewModel() {
 
 
 
-    var auth=Firebase.auth
-    fun register(){
-        if(validate()){
-            AddAccount()
+    val emailPattern = "^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}$"
+    val emailRegex = Regex(emailPattern)
 
-        }
+    val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$"
+    val passwordRegex = Regex(passwordPattern)
+
+    fun isValidPassword(password: String): Boolean {
+        return passwordRegex.matches(password)
     }
 
+    fun isValidEmail(email: String): Boolean {
+        return emailRegex.matches(email)
+    }
 
-    fun AddAccount(){
-
-        auth.createUserWithEmailAndPassword(Email.get()!!,Pass.get()!!).addOnCompleteListener {task->
-
-            if(task.isSuccessful){
-                Log.e("firebase","successfully")
+    fun signInByGoogle(){
 
 
-                //send in gmail to verify email
-                val user=auth.currentUser
-                user?.sendEmailVerification()?.addOnCompleteListener {verifyTask->
+        googleFlag.value=true
+    }
 
-                    if(verifyTask.isSuccessful)
-                    {
-                        // massage send successfully in gemail
+    fun register(){
 
-                    } else {
+        if(validate()){
 
-                        //error send
 
-                    }
-                }
+            val user= Entity1(0,Email.get().toString(), Pass.get().toString())
 
-            }
-            else{
+            MyDataBase.getDataBase().productDao().insert_User(user)
 
-                Log.e("errrrorr",task.exception!!.localizedMessage)
-            }
+
+//            val userWithProducts = MyDataBase.getDataBase().productDao().getUserWithProducts(user.id)
+//            val user_data = userWithProducts.user // بيانات المستخدم
+//            val products_data = userWithProducts.products // قائمة المنتجات المرتبطة بهذا المستخدم
+//
+//            Log.e("Userrrrrrrrrrrrrrrrrrr","correct${user}")
+
+
+            flagActivity.value=true
+
         }
     }
 
@@ -75,6 +69,10 @@ class LoginViewModel:BaseViewModel() {
             valid=false
             EmailError.set("Please enter email")
         }
+        if(!isValidEmail(Email.get().toString())){
+            valid=false
+            EmailError.set("Invalid email format")
+        }
         else{
             EmailError.set(null)
         }
@@ -84,12 +82,19 @@ class LoginViewModel:BaseViewModel() {
             valid=false
             PassError.set("Please enter password")
         }
+        if(!isValidPassword(Pass.get().toString())){
+            valid=false
+            PassError.set("Password must be at least 6 characters, containing letters and digits")
+        }
         else{
             PassError.set(null)
         }
 
         return valid
     }
+
+
+
 
 
 }

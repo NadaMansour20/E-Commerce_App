@@ -26,34 +26,10 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
         databinding.favRecyclerview.adapter=favAdapter
 
-        viewModel.getFavProducts()
+        viewModel.getFavProducts(userId = 0)
         observeData()
+        click()
 
-        favAdapter.product_Clicked=object :ClickListener{
-            override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun add_Item(item: ProductsItem?, add: Int?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun add_Cart(item: ProductsItem?) {
-
-                val Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,
-                    item?.title,item?.price,item?.id!!)
-
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
-
-
-
-            }
-
-            override fun add_minesButton(item: ProductsItem?, add: Int?) {
-                TODO("Not yet implemented")
-            }
-
-        }
 
 
     }
@@ -67,6 +43,38 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
     override fun get_viewModel(): FavViewModel {
         return ViewModelProvider(this).get(FavViewModel::class.java)
+    }
+
+    fun click(){
+        favAdapter.product_Clicked=object : ClickListener {
+            override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun add_Item(item: ProductsItem?, add: Int?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun add_Cart(item: ProductsItem?) {
+
+                val Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,0)
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+
+
+            }
+
+            override fun add_minesButton(item: ProductsItem?, add: Int?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun addHolder(position: Int, item: ProductsItem?) {
+                TODO("Not yet implemented")
+            }
+
+        }
     }
 
     fun observeData(){

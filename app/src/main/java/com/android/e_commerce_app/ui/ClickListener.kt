@@ -11,7 +11,10 @@ interface ClickListener {
 
     fun add_minesButton(item: ProductsItem?,add:Int?)
 
+    fun addHolder(position:Int, item: ProductsItem?)
+
 }
+
 
 interface CategoryClickListener{
 

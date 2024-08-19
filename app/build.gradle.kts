@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -67,16 +66,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    //firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth")
-
-    //fire store
-    implementation("com.google.firebase:firebase-firestore")
-
-    //authenticate by google
-    implementation ("com.google.android.gms:play-services-auth:20.2.0")
 
 
     //Room
@@ -84,6 +73,11 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.room:room-common:2.5.2")
     kapt("androidx.room:room-compiler:2.5.2")
+
+
+    //sign in by google
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
+
 
 
 

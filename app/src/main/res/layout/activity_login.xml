@@ -53,7 +53,6 @@
                 android:error="@{lvm.passError}"
                 >
                 <EditText
-                    android:inputType="numberPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_password_to_continue"
@@ -69,8 +68,9 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="10dp"
+            style="@style/Button"
+            android:textSize="20sp"
             android:onClick="@{()->lvm.register()}"
-            style="@style/TEXT"
             android:backgroundTint="@color/roze"/>
             <TextView
                 android:layout_width="match_parent"
@@ -100,6 +100,7 @@
                     android:padding="10dp"
                     android:layout_marginStart="16dp"
                     style="@style/TEXT"
+                    android:onClick="@{()->lvm.signInByGoogle()}"
                     android:layout_gravity="center_vertical"/>
 
             </LinearLayout>

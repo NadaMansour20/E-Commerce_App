@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
 
 data class ProductResponse(
 
@@ -23,6 +25,7 @@ data class ProductResponse(
 
 @Entity
 data class ProductsItem(
+
 
 	@ColumnInfo
 	val favOrNot:Boolean?=null,
@@ -45,17 +48,17 @@ data class ProductsItem(
 //	@field:SerializedName("minimumOrderQuantity")
 //	val minimumOrderQuantity: Int? = null,
 //
-//	@ColumnInfo
-//	@field:SerializedName("rating")
-//	val rating: Any? = null,
+	@ColumnInfo
+	@field:SerializedName("rating")
+	val rating: Float? = null,
 //
 //	@ColumnInfo
 //	@field:SerializedName("returnPolicy")
 //	val returnPolicy: String? = null,
 
-//	@ColumnInfo
-//	@field:SerializedName("description")
-//	val description: String? = null,
+	@ColumnInfo
+	@field:SerializedName("description")
+	val description: String? = null,
 //
 //	@ColumnInfo
 //	@field:SerializedName("weight")
@@ -106,9 +109,9 @@ data class ProductsItem(
 //	@field:SerializedName("category")
 //	val category: String? = null,
 //
-//	@ColumnInfo
-//	@field:SerializedName("stock")
-//	val stock: Int? = null,
+	@ColumnInfo
+	@field:SerializedName("stock")
+	val stock: Int? = null,
 //
 //	@ColumnInfo
 //	@field:SerializedName("sku")
@@ -121,7 +124,11 @@ data class ProductsItem(
 //	@ColumnInfo
 //	@field:SerializedName("dimensions")
 //	val dimensions: Dimensions? = null
-)
+
+
+	@ColumnInfo // This is the foreign key
+	val foreign_key: Int
+):Serializable
 
 data class Dimensions(
 

@@ -28,39 +28,19 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
         databinding.cartRecyclerview.adapter=cartAdapter
 
-        viewModel.getCartProducts()
+        viewModel.getCartProducts(0)
 
         observeData()
+        click()
 
+        val all_cart_Product=MyDataBase.getDataBase().productDao().getCartProduct(0)
 
-        cartAdapter.product_Clicked=object :ClickListener{
-            override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun add_Item(item: ProductsItem?, add: Int?) {
-
-                val Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,
-                    item?.title,item?.price,item?.id!!)
-
-
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
-
-            }
-
-            override fun add_Cart(item: ProductsItem?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun add_minesButton(item: ProductsItem?,add:Int?) {
-               val Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,
-                    item?.title,item?.price,item?.id!!)
-
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
-
-            }
-
+        var sum=0.0
+        for(i in 0..all_cart_Product.size){
+            sum+= all_cart_Product[i].price!! * all_cart_Product[i].addNumber!!
         }
+
+        databinding.priceCart.text=sum.toString()
 
 
 
@@ -73,6 +53,42 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
     override fun get_viewModel(): CartViewModel {
         return ViewModelProvider(this).get(CartViewModel::class.java)
+    }
+
+    fun click(){
+
+        cartAdapter.product_Clicked=object : ClickListener {
+            override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun add_Item(item: ProductsItem?, add: Int?) {
+
+                val Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,0)
+
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+            }
+
+            override fun add_Cart(item: ProductsItem?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun add_minesButton(item: ProductsItem?, add:Int?) {
+                val Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,0)
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+            }
+
+            override fun addHolder(position: Int, item: ProductsItem?) {
+                TODO("Not yet implemented")
+            }
+
+        }
     }
 
     fun observeData(){

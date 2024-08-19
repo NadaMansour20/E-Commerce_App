@@ -1,5 +1,6 @@
 package com.android.e_commerce_app.ui.cartfragment
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.database.MyDataBase
@@ -8,12 +9,14 @@ import kotlinx.coroutines.launch
 class CartViewModel :BaseViewModel(){
 
 
-    fun getCartProducts(){
+    fun getCartProducts(useId:Int){
 
         viewModelScope.launch {
 
             try {
-                val result= MyDataBase.getDataBase().productDao().getCartProduct(true)
+                val result= MyDataBase.getDataBase().productDao().getCartProduct(useId)
+
+                Log.e("Cartttttttttttttttttttt",result.get(0).addNumber.toString())
 
                 cart_items.value=result
 

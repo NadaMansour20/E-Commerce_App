@@ -9,12 +9,12 @@ class FavViewModel :BaseViewModel(){
 
 
 
-    fun getFavProducts(){
+    fun getFavProducts(userId:Int){
 
         viewModelScope.launch {
 
             try {
-                val result=MyDataBase.getDataBase().productDao().getFavProduct(true)
+                val result=MyDataBase.getDataBase().productDao().getFavProduct(userId)
 
                 favItems.value=result
 

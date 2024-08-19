@@ -22,7 +22,6 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
     class ItemViewHolder(var homeBinding:ItemDesignCartBinding):ViewHolder(homeBinding.root){
 
         var cnAdd=0
-        var sum=0
 
 
         fun bind(itemBinding: ProductsItem?){
@@ -56,10 +55,13 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
 
                 holder.homeBinding.minesImageButton.setOnClickListener {
 
-                    holder.cnAdd--
+                    if(holder.cnAdd<=1) {
+                        holder.cnAdd=0
+                    }
+                    else {
 
-                    holder.sum+=holder.cnAdd
-
+                        holder.cnAdd--
+                    }
                     holder.homeBinding.numOfAddOrMines.text=holder.cnAdd.toString()
 
 
@@ -70,7 +72,6 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
 
                     holder.cnAdd++
 
-                   holder.sum+=holder.cnAdd
 
                     holder.homeBinding.numOfAddOrMines.text=holder.cnAdd.toString()
 

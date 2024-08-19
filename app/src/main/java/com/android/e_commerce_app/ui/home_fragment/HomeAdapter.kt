@@ -52,6 +52,10 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
         // click to add product in like list
             if(product_Clicked!=null){
 
+                holder.homeBinding.productImage.setOnClickListener{
+                    product_Clicked?.addHolder(position,items!![position])
+                }
+
                 holder.homeBinding.addToFavBtn.setOnClickListener {
 
                     holder.cn++

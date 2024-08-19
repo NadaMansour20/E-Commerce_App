@@ -26,4 +26,10 @@ open class BaseViewModel:ViewModel() {
 
     var cart_items=MutableLiveData<List<ProductsItem?>?>()
 
+    var product_by_id=MutableLiveData<ProductsItem?>()
+
+    var flagActivity=MutableLiveData<Boolean>(false)
+
+    var googleFlag=MutableLiveData<Boolean>(false)
+
 }
