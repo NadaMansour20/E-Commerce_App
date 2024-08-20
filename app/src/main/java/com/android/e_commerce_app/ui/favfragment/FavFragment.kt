@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.FragmentFavBinding
 import com.android.e_commerce_app.ui.ClickListener
@@ -26,9 +27,29 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
         databinding.favRecyclerview.adapter=favAdapter
 
-        viewModel.getFavProducts(userId = 0)
+
         observeData()
-        click()
+
+
+        //receive data of user after login
+        val bundle=arguments
+
+        val userItem = bundle?.getSerializable("user_object") as? Entity1
+
+        if(userItem!=null){
+
+            viewModel.getFavProducts(userItem!!.id)
+
+
+            click(userItem.id)
+        }
+
+
+
+
+
+
+
 
 
 
@@ -45,8 +66,10 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
         return ViewModelProvider(this).get(FavViewModel::class.java)
     }
 
-    fun click(){
+    fun click(user_id:Int){
         favAdapter.product_Clicked=object : ClickListener {
+
+
             override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
                 TODO("Not yet implemented")
             }
@@ -57,8 +80,8 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
             override fun add_Cart(item: ProductsItem?) {
 
-                val Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                val Product = ProductsItem(item?.favOrNot,item?.addNumber!!,true,item.thumbnail,item.rating,item.description,
+                    item.title,item.price,item.id,item.stock,user_id)
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 

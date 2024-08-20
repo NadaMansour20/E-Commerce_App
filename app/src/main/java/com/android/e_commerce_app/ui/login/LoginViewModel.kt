@@ -1,5 +1,6 @@
 package com.android.e_commerce_app.ui.login
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.database.Entity1
@@ -41,18 +42,25 @@ class LoginViewModel: BaseViewModel() {
 
         if(validate()){
 
+             fun isUserExists(email: String): Boolean {
+                val user = MyDataBase.getDataBase().productDao().getUserByEmail(email)
+
+                 Log.e("Emailllllllll","${user?.email}")
+                return user != null
+            }
+
 
             val user= Entity1(0,Email.get().toString(), Pass.get().toString())
 
-            MyDataBase.getDataBase().productDao().insert_User(user)
+            if(!isUserExists(user.email!!)) {
 
+                MyDataBase.getDataBase().productDao().insert_User(user)
 
-//            val userWithProducts = MyDataBase.getDataBase().productDao().getUserWithProducts(user.id)
-//            val user_data = userWithProducts.user // بيانات المستخدم
-//            val products_data = userWithProducts.products // قائمة المنتجات المرتبطة بهذا المستخدم
-//
-//            Log.e("Userrrrrrrrrrrrrrrrrrr","correct${user}")
+            }
+            else{
+                Log.e("Userrrrrrrrr Email","already exits")
 
+            }
 
             flagActivity.value=true
 

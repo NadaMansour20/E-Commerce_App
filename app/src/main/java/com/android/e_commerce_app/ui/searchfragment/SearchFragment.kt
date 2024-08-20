@@ -1,6 +1,7 @@
 package com.android.e_commerce_app.ui.searchfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.FragmentSearchBinding
 import com.android.e_commerce_app.ui.ClickListener
@@ -28,10 +30,26 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
         databinding.svm=viewModel
 
+
+        val bundle=arguments
+
+        val userItem = bundle?.getSerializable("user_object") as? Entity1
+
+
         animation()
         data_observation()
         search_click()
-        click()
+
+        if(userItem!=null) {
+            click(userItem.id)
+        }
+        else{
+            Log.e("Errrrrrrrrrrrrrrror","Login+${userItem}")
+
+        }
+
+
+
 
 
 
@@ -96,7 +114,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
         })
     }
 
-    fun click(){
+    fun click(user_id:Int){
 
         searchAdapter.product_Clicked=object : ClickListener {
 
@@ -107,12 +125,12 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
 
                 if(flag%2==0) {
-                    Product = ProductsItem(true,item?.addNumber,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                        item?.title,item?.price,item?.id!!,item.stock,0)
+                    Product = ProductsItem(true,item?.addNumber!!,item.addToCart,item.thumbnail,item.rating,item.description,
+                        item.title,item.price,item.id,item.stock,user_id)
                 }
                 else{
-                    Product = ProductsItem(false,item?.addNumber,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                        item?.title,item?.price,item?.id!!,item.stock,0)
+                    Product = ProductsItem(false,item?.addNumber!!,item.addToCart,item.thumbnail,item.rating,item.description,
+                        item.title,item.price,item.id,item.stock,user_id)
 
                 }
 
@@ -130,8 +148,8 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
-                Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
@@ -144,8 +162,8 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
             override fun add_Cart(item: ProductsItem?) {
 
-                Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                Product = ProductsItem(item?.favOrNot,item?.addNumber!!,true,item.thumbnail,item.rating,item.description,
+                    item.title,item.price,item.id,item.stock,user_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)

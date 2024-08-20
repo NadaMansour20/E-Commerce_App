@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.FragmentCartBinding
 import com.android.e_commerce_app.ui.ClickListener
@@ -28,19 +29,24 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
         databinding.cartRecyclerview.adapter=cartAdapter
 
-        viewModel.getCartProducts(0)
-
         observeData()
-        click()
 
-        val all_cart_Product=MyDataBase.getDataBase().productDao().getCartProduct(0)
 
-        var sum=0.0
-        for(i in 0..all_cart_Product.size){
-            sum+= all_cart_Product[i].price!! * all_cart_Product[i].addNumber!!
+        val bundle=arguments
+
+        val userItem = bundle?.getSerializable("user_object") as? Entity1
+
+
+        if(userItem!=null){
+
+            viewModel.getCartProducts(userItem.id)
+            click(userItem.id)
+
         }
 
-        databinding.priceCart.text=sum.toString()
+
+
+
 
 
 
@@ -55,7 +61,7 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
         return ViewModelProvider(this).get(CartViewModel::class.java)
     }
 
-    fun click(){
+    fun click(use_id:Int){
 
         cartAdapter.product_Clicked=object : ClickListener {
             override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
@@ -64,8 +70,8 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
-                val Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                val Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,use_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
@@ -77,8 +83,8 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
             }
 
             override fun add_minesButton(item: ProductsItem?, add:Int?) {
-                val Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                val Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,use_id)
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
@@ -96,6 +102,13 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
         viewModel.cart_items.observe(viewLifecycleOwner,Observer{
 
             cartAdapter.notify(it)
+
+            var sum=0.0
+            for(i in 0..<it!!.size){
+                sum+= it[i]!!.price!! * it[i]!!.addNumber
+            }
+
+            databinding.apiPrice.text=sum.toString()
 
             databinding.noItemsInTheCart.isVisible=false
         })

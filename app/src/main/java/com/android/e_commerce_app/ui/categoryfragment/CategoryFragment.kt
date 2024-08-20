@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.FragmentCategoryBinding
 import com.android.e_commerce_app.ui.CategoryClickListener
@@ -35,7 +36,14 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
         databinding.categoryTypeRecycler.adapter=categoryAdapter
 
-        click()
+        val bundle=arguments
+
+        val userItem = bundle?.getSerializable("user_object") as? Entity1
+
+        if(userItem!=null){
+            click(userItem.id)
+        }
+
 
 
 
@@ -49,7 +57,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
         return ViewModelProvider(this).get(CategoryViewModel::class.java)
     }
 
-    fun click(){
+    fun click(use_id:Int){
         categoryAdapter.categoryListener=object : CategoryClickListener {
 
             override fun categoryClick(position: Int, category_name: String?) {
@@ -69,12 +77,12 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
 
                 if(flag%2==0) {
-                    Product = ProductsItem(true,item?.addNumber,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                        item?.title,item?.price,item?.id!!,item.stock,0)
+                    Product = ProductsItem(true,item?.addNumber!!,item.addToCart,item.thumbnail,item.rating,item.description,
+                        item.title,item.price,item.id,item.stock,use_id)
                 }
                 else{
-                    Product = ProductsItem(false,item?.addNumber,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                        item?.title,item?.price,item?.id!!,item.stock,0)
+                    Product = ProductsItem(false,item?.addNumber!!,item.addToCart,item.thumbnail,item.rating,item.description,
+                        item.title,item.price,item.id,item.stock,use_id)
 
                 }
 
@@ -91,8 +99,8 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
-                Product = ProductsItem(item?.favOrNot,add,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,use_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
@@ -105,8 +113,8 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
             override fun add_Cart(item: ProductsItem?) {
 
-                Product = ProductsItem(item?.favOrNot,item?.addNumber,true,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,0)
+                Product = ProductsItem(item?.favOrNot,item?.addNumber!!,true,item.thumbnail,item.rating,item.description,
+                    item.title,item.price,item.id,item.stock,use_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)

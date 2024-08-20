@@ -31,7 +31,7 @@ data class ProductsItem(
 	val favOrNot:Boolean?=null,
 
 	@ColumnInfo
-	val addNumber:Int?=null,
+	val addNumber:Int=0,
 
 	@ColumnInfo
 	val addToCart:Boolean?=null,
@@ -127,7 +127,7 @@ data class ProductsItem(
 
 
 	@ColumnInfo // This is the foreign key
-	val foreign_key: Int
+	val foreign_key: Int?=null
 ):Serializable
 
 data class Dimensions(

@@ -16,7 +16,7 @@ class CartViewModel :BaseViewModel(){
             try {
                 val result= MyDataBase.getDataBase().productDao().getCartProduct(useId)
 
-                Log.e("Cartttttttttttttttttttt",result.get(0).addNumber.toString())
+                Log.e("getCartProduct","Correcttttttt${result}")
 
                 cart_items.value=result
 

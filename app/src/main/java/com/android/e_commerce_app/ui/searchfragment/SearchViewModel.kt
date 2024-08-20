@@ -39,4 +39,5 @@ class SearchViewModel :BaseViewModel() {
             }
 
         }
-    }}
+    }
+}

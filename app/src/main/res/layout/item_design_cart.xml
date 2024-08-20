@@ -84,7 +84,7 @@
                 android:layout_marginStart="40dp"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:text="@{cartvm.addNumber.toString()}"
+                android:text="@{cartvm.addNumber}"
                 app:layout_constraintTop_toTopOf="@id/minesImageButton"
                 app:layout_constraintStart_toEndOf="@id/minesImageButton" />
 

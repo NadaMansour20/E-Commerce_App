@@ -1,5 +1,6 @@
 package com.android.e_commerce_app.ui.favfragment
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.database.MyDataBase
@@ -15,6 +16,9 @@ class FavViewModel :BaseViewModel(){
 
             try {
                 val result=MyDataBase.getDataBase().productDao().getFavProduct(userId)
+
+                Log.e("getCartProduct","Correcttttttt${result}")
+
 
                 favItems.value=result
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
+import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.ActivityMainBinding
 import com.android.e_commerce_app.ui.cartfragment.CartFragment
 import com.android.e_commerce_app.ui.categoryfragment.CategoryFragment
@@ -68,6 +69,15 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
     }
 
     fun PushFragmnet(fragment:Fragment){
+
+        val get_user= MyDataBase.getDataBase().productDao().getLastUser()
+
+        val bundle = Bundle().apply {
+            putSerializable("user_object", get_user)
+        }
+
+        fragment.arguments = bundle
+
         supportFragmentManager.beginTransaction().replace(R.id.container_frame,fragment).commit()
 
     }

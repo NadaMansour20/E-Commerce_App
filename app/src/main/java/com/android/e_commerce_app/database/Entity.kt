@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import com.android.e_commerce_app.ui.api.ProductsItem
+import java.io.Serializable
 
 
 @Entity("user")
@@ -17,7 +18,7 @@ data class Entity1(
 
     val password: String? = null
 
-)
+):Serializable
 
 
 //relation between 2 table

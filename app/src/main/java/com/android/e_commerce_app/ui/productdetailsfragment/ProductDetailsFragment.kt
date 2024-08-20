@@ -1,10 +1,12 @@
 package com.android.e_commerce_app.ui.productdetailsfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.base.BaseFragment
+import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.DetailsProductBinding
 import com.android.e_commerce_app.ui.api.ProductsItem
@@ -24,29 +26,55 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsViewModel,DetailsProdu
 
         //receive data by Bundle from home fragment
 
-        var bundle=arguments
+        val bundle=arguments
         val productItem = bundle?.getSerializable("product_object") as? ProductsItem
 
+        if(productItem!=null) {
 
-        databinding.titleProduct.text=productItem?.title.toString()
-        databinding.stockApi.text=productItem?.stock.toString()
+            databinding.titleProduct.text = productItem.title.toString()
+            databinding.stockApi.text = productItem.stock.toString()
+            databinding.rating.rating = productItem.rating ?: 0f
+            databinding.descriptionApi.text = productItem.description.toString()
+            databinding.priceApi.text = productItem.price.toString()
+            Glide.with(this).load(productItem.thumbnail).into(databinding.imageDetails)
 
-        databinding.rating.rating=productItem?.rating?:0f
-        databinding.descriptionApi.text=productItem?.description.toString()
-        databinding.priceApi.text=productItem?.price.toString()
-        Glide.with(this).load(productItem?.thumbnail).into(databinding.imageDetails)
+            Log.e("Corrrect","Bundle+${productItem}")
+        }
+        else{
+            Log.e("null","Bundle products is nullllllll")
 
-
-
-        var product:ProductsItem
-
-        databinding.addCartDetails.setOnClickListener {
-
-            product = ProductsItem(productItem?.favOrNot,productItem?.addNumber,true,productItem?.thumbnail,productItem?.rating,productItem?.description,
-                productItem?.title,productItem?.price,productItem?.id!!,productItem.stock,0)
+        }
 
 
-            MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
+
+        val bundle2=arguments
+
+        var userItem = bundle2?.getSerializable("user_object") as? Entity1
+
+
+        if(userItem!=null) {
+
+            var product: ProductsItem
+
+            databinding.addCartDetails.setOnClickListener {
+
+                product = ProductsItem(
+                    productItem?.favOrNot,
+                    productItem?.addNumber!!,
+                    true,
+                    productItem.thumbnail,
+                    productItem.rating,
+                    productItem.description,
+                    productItem.title,
+                    productItem.price,
+                    productItem.id,
+                    productItem.stock,
+                    userItem.id
+                )
+
+
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
+            }
         }
 
 
