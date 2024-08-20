@@ -29,7 +29,6 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
         databinding.cartRecyclerview.adapter=cartAdapter
 
-        observeData()
 
 
         val bundle=arguments
@@ -41,13 +40,10 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
             viewModel.getCartProducts(userItem.id)
             click(userItem.id)
+            observeData(userItem.id)
+
 
         }
-
-
-
-
-
 
 
     }
@@ -97,20 +93,24 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
         }
     }
 
-    fun observeData(){
+    fun observeData(user_id: Int){
 
         viewModel.cart_items.observe(viewLifecycleOwner,Observer{
 
             cartAdapter.notify(it)
 
+            //all price of products in card
             var sum=0.0
             for(i in 0..<it!!.size){
-                sum+= it[i]!!.price!! * it[i]!!.addNumber
+                sum+= it[i]?.price!! * it[i]?.addNumber!!
             }
 
-            databinding.apiPrice.text=sum.toString()
+            databinding.apiPrice.text=String.format("%.2f", sum)
 
-            databinding.noItemsInTheCart.isVisible=false
+            MyDataBase.getDataBase().productDao().getCartProduct(user_id )
+
+
+            databinding.noItemsInTheCart.isVisible=it.isNullOrEmpty()
         })
     }
 

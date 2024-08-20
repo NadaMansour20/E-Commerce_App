@@ -21,7 +21,6 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
     //holder is the special object to each item in recycler_view
     class ItemViewHolder(var homeBinding:ItemDesignCartBinding):ViewHolder(homeBinding.root){
 
-        var cnAdd=0
 
 
         fun bind(itemBinding: ProductsItem?){
@@ -48,6 +47,8 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
         val item: ProductsItem? = items?.get(position)
         holder.bind(item)
 
+        var cnAdd=item?.addNumber
+
 
         // click to add product in like list
             if(product_Clicked!=null){
@@ -55,34 +56,31 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
 
                 holder.homeBinding.minesImageButton.setOnClickListener {
 
-                    if(holder.cnAdd<=1) {
-                        holder.cnAdd=0
+
+                    if(cnAdd!! <=1) {
+                        cnAdd=0
                     }
                     else {
 
-                        holder.cnAdd--
+                        cnAdd = cnAdd!! - 1
                     }
-                    holder.homeBinding.numOfAddOrMines.text=holder.cnAdd.toString()
+                    holder.homeBinding.numOfAddOrMines.text=cnAdd.toString()
 
-
-                    product_Clicked?.add_Item(items!![position],holder.cnAdd)
+                    product_Clicked?.add_Item(items!![position],cnAdd)
                 }
 
                 holder.homeBinding.addImageButton.setOnClickListener {
 
-                    holder.cnAdd++
+                    cnAdd = cnAdd!! + 1
 
 
-                    holder.homeBinding.numOfAddOrMines.text=holder.cnAdd.toString()
+                    holder.homeBinding.numOfAddOrMines.text=cnAdd.toString()
 
-                    product_Clicked?.add_Item(items!![position],holder.cnAdd)
+                    product_Clicked?.add_Item(items!![position],cnAdd)
                 }
 
 
             }
-
-
-
 
     }
 

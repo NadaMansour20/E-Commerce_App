@@ -2,6 +2,7 @@ package com.android.e_commerce_app.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +38,21 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
         sign_in_byGoogle()
 
 
+        dataBinding.textInputLayoutPassword.setEndIconOnClickListener {
+            val isPasswordVisible = dataBinding.password.inputType and InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            if (isPasswordVisible) {
+                // Hide password
+                dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+               dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye)
+            } else {
+                // Show password
+                dataBinding.password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.openeye)
+            }
+            dataBinding.password.setSelection( dataBinding.password.text.length)
+        }
+
+
     }
 
     override fun get_layoutId(): Int {
@@ -61,6 +77,13 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
                 signIn()
             }
         })
+
+        viewModel.user_data.observe(this, Observer {
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("user", it)
+            startActivity(intent)
+        })
     }
 
     fun storeUserInDatabase(account: GoogleSignInAccount) {
@@ -69,6 +92,11 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
             email = account.email ?: "",
             password = account.displayName ?: ""
         )
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
+
         MyDataBase.getDataBase().productDao().insert_User(user)
 
     }
@@ -83,7 +111,7 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
     fun signIn(){
 
-        var signInIntent:Intent=goodle_signinClient.getSignInIntent()
+        val signInIntent:Intent=goodle_signinClient.getSignInIntent()
         startActivityForResult(signInIntent,1000)
     }
 
@@ -108,6 +136,8 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
+
 
 
 }

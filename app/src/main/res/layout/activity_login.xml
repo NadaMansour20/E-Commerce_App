@@ -44,20 +44,27 @@
                 android:hint="@string/enter_your_email_to_continue"
                 android:text="@={lvm.email}"
                 />
+
         </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:error="@{lvm.passError}"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/openeye"
                 >
                 <EditText
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_password_to_continue"
                     android:text="@={lvm.pass}"
                     />
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
         <Button

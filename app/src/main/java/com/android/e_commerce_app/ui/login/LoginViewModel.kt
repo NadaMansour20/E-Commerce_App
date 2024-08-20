@@ -42,11 +42,17 @@ class LoginViewModel: BaseViewModel() {
 
         if(validate()){
 
+
              fun isUserExists(email: String): Boolean {
                 val user = MyDataBase.getDataBase().productDao().getUserByEmail(email)
+                 user_data.value=user
 
+                 if(user?.password!=Pass.get()){
+                     PassError.set("Please not correct password")
+                 }
                  Log.e("Emailllllllll","${user?.email}")
-                return user != null
+
+                return user != null && user.password!=Pass.get()
             }
 
 
@@ -54,13 +60,16 @@ class LoginViewModel: BaseViewModel() {
 
             if(!isUserExists(user.email!!)) {
 
+                user_data.value=user
                 MyDataBase.getDataBase().productDao().insert_User(user)
 
             }
             else{
+
                 Log.e("Userrrrrrrrr Email","already exits")
 
             }
+
 
             flagActivity.value=true
 

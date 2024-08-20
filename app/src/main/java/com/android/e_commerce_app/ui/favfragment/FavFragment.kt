@@ -2,6 +2,7 @@ package com.android.e_commerce_app.ui.favfragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
@@ -38,19 +39,11 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
         if(userItem!=null){
 
-            viewModel.getFavProducts(userItem!!.id)
+            viewModel.getFavProducts(userItem.id)
 
 
             click(userItem.id)
         }
-
-
-
-
-
-
-
-
 
 
     }
@@ -105,6 +98,8 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
         viewModel.favItems.observe(viewLifecycleOwner, Observer {
 
             favAdapter.notify(it)
+
+            databinding.noFavItem.isVisible=it.isNullOrEmpty()
         })
 
     }

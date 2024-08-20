@@ -116,6 +116,7 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
+
 //                val get_product=MyDataBase.getDataBase().productDao().getProduct(item.id)
 //
 //                Log.e("addItemmmmmmmmmmmmmm","correctttttt${get_product}")

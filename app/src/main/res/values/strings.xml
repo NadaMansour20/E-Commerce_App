@@ -10,7 +10,7 @@
     <string name="like">favorite</string>
     <string name="cart">cart</string>
     <string name="profile">profile</string>
-    <string name="egp">EGP</string>
+    <string name="egp">$ </string>
     <string name="best_selling">Best Selling</string>
     <string name="comfort_wear">Comfort Wear</string>
     <string name="recommended_for_you">Recommended for you</string>
@@ -22,4 +22,5 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="purchase">Purchase</string>
     <string name="product_not_found">Product not found</string>
+    <string name="no_favourite_items">No favourite items</string>
 </resources>
