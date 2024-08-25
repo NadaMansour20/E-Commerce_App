@@ -148,7 +148,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
-                Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                Product = ProductsItem(item?.favOrNot,add!!,true,item?.thumbnail,item?.rating,item?.description,
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
@@ -162,8 +162,8 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
             override fun add_Cart(item: ProductsItem?) {
 
-                Product = ProductsItem(item?.favOrNot,item?.addNumber!!,true,item.thumbnail,item.rating,item.description,
-                    item.title,item.price,item.id,item.stock,user_id)
+                Product = ProductsItem(item?.favOrNot,1,true,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)

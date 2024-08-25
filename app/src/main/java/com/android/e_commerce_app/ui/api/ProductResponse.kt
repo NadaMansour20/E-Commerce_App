@@ -31,7 +31,7 @@ data class ProductsItem(
 	val favOrNot:Boolean?=null,
 
 	@ColumnInfo
-	val addNumber:Int=0,
+	val addNumber:Int=1,
 
 	@ColumnInfo
 	val addToCart:Boolean?=null,

@@ -31,4 +31,5 @@ interface Dao {
     @Query("select * from user where email =:email limit 1")
     fun getUserByEmail(email: String): Entity1?
 
+
 }

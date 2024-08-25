@@ -1,5 +1,6 @@
 package com.android.e_commerce_app.ui.cartfragment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -47,7 +48,8 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
         val item: ProductsItem? = items?.get(position)
         holder.bind(item)
 
-        var cnAdd=item?.addNumber
+        var cnAdd=item?.addNumber!!
+        Log.e("cnAddddddddddddddddddd","$cnAdd")
 
 
         // click to add product in like list
@@ -57,12 +59,13 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
                 holder.homeBinding.minesImageButton.setOnClickListener {
 
 
-                    if(cnAdd!! <=1) {
+                    if(cnAdd <=1) {
                         cnAdd=0
+
                     }
                     else {
 
-                        cnAdd = cnAdd!! - 1
+                        cnAdd -= 1
                     }
                     holder.homeBinding.numOfAddOrMines.text=cnAdd.toString()
 
@@ -71,7 +74,7 @@ class CartAdapter(var items:List<ProductsItem?>?) :Adapter<CartAdapter.ItemViewH
 
                 holder.homeBinding.addImageButton.setOnClickListener {
 
-                    cnAdd = cnAdd!! + 1
+                    cnAdd += 1
 
 
                     holder.homeBinding.numOfAddOrMines.text=cnAdd.toString()

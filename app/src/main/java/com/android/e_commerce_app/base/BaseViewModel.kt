@@ -33,4 +33,7 @@ open class BaseViewModel:ViewModel() {
 
     var user_data=MutableLiveData<Entity1>()
 
+    var text=MutableLiveData<String>()
+
+
 }

@@ -99,7 +99,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
-                Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
+                Product = ProductsItem(item?.favOrNot,add!!,true,item?.thumbnail,item?.rating,item?.description,
                     item?.title,item?.price,item?.id!!,item.stock,use_id)
 
 
@@ -113,8 +113,8 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
             override fun add_Cart(item: ProductsItem?) {
 
-                Product = ProductsItem(item?.favOrNot,item?.addNumber!!,true,item.thumbnail,item.rating,item.description,
-                    item.title,item.price,item.id,item.stock,use_id)
+                Product = ProductsItem(item?.favOrNot,0,true,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,use_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)

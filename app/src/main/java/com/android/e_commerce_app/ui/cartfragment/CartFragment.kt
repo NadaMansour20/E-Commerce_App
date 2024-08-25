@@ -40,7 +40,7 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
             viewModel.getCartProducts(userItem.id)
             click(userItem.id)
-            observeData(userItem.id)
+            observeData()
 
 
         }
@@ -57,7 +57,7 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
         return ViewModelProvider(this).get(CartViewModel::class.java)
     }
 
-    fun click(use_id:Int){
+    fun click(user_id:Int){
 
         cartAdapter.product_Clicked=object : ClickListener {
             override fun add_FavClick(position: Int, item: ProductsItem?, flag: Int) {
@@ -67,10 +67,14 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
                 val Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,use_id)
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                //update and receive data again
+                viewModel.getCartProducts(user_id)
+
 
             }
 
@@ -80,9 +84,11 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
 
             override fun add_minesButton(item: ProductsItem?, add:Int?) {
                 val Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,use_id)
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                viewModel.getCartProducts(user_id)
 
             }
 
@@ -91,27 +97,24 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
             }
 
         }
+
     }
 
-    fun observeData(user_id: Int){
+    fun observeData(){
 
         viewModel.cart_items.observe(viewLifecycleOwner,Observer{
 
             cartAdapter.notify(it)
 
-            //all price of products in card
-            var sum=0.0
-            for(i in 0..<it!!.size){
-                sum+= it[i]?.price!! * it[i]?.addNumber!!
-            }
-
-            databinding.apiPrice.text=String.format("%.2f", sum)
-
-            MyDataBase.getDataBase().productDao().getCartProduct(user_id )
-
-
             databinding.noItemsInTheCart.isVisible=it.isNullOrEmpty()
         })
+
+        viewModel.text.observe(viewLifecycleOwner, Observer {
+
+            databinding.apiPrice.text=it
+
+        })
+
     }
 
 

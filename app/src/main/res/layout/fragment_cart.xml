@@ -55,6 +55,7 @@
             android:maxLines="1"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:text="@{cvm.text}"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/egp_total"
             app:layout_constraintTop_toTopOf="@id/egp_total"

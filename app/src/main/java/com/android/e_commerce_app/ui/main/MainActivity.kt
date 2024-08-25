@@ -75,10 +75,13 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
 
         Log.e("Loginnnnnnnnnnnnnnnnnnnn","$user")
 
+        if(user!=null) {
+
             val bundle = Bundle().apply {
                 putSerializable("user_object", user)
             }
             fragment.arguments = bundle
+        }
 
         supportFragmentManager.beginTransaction().replace(R.id.container_frame,fragment).commit()
 

@@ -1,5 +1,6 @@
 package com.android.e_commerce_app.ui.home_fragment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -22,7 +23,6 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
     class ItemViewHolder(var homeBinding:ItemDesignBinding):ViewHolder(homeBinding.root){
 
         var cn=1
-        var cnAdd=0
 
         fun bind(itemBinding: ProductsItem?){
             homeBinding.itemDesign=itemBinding
@@ -47,6 +47,11 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item: ProductsItem? = items?.get(position)
         holder.bind(item)
+
+        var cnAdd=item?.addNumber!!
+
+        Log.e("cnAddddddddddddddddddd","$cnAdd")
+
 
 
         // click to add product in like list
@@ -78,8 +83,8 @@ class HomeAdapter(var items:List<ProductsItem?>?) :Adapter<HomeAdapter.ItemViewH
 
                 holder.homeBinding.addButton.setOnClickListener {
 
-                    holder.cnAdd++
-                    product_Clicked?.add_Item(items!![position],holder.cnAdd)
+                    cnAdd += 1
+                    product_Clicked?.add_Item(items!![position],cnAdd)
                 }
 
             }

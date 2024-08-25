@@ -47,12 +47,9 @@ class LoginViewModel: BaseViewModel() {
                 val user = MyDataBase.getDataBase().productDao().getUserByEmail(email)
                  user_data.value=user
 
-                 if(user?.password!=Pass.get()){
-                     PassError.set("Please not correct password")
-                 }
                  Log.e("Emailllllllll","${user?.email}")
 
-                return user != null && user.password!=Pass.get()
+                return (user != null)
             }
 
 

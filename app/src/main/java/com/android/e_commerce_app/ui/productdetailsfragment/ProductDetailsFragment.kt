@@ -22,7 +22,7 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsViewModel,DetailsProdu
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       databinding.details=viewModel
+       //databinding.details=viewModel
 
         //receive data by Bundle from home fragment
 
@@ -49,31 +49,32 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsViewModel,DetailsProdu
 
         val bundle2=arguments
 
-        var userItem = bundle2?.getSerializable("user_object") as? Entity1
+        val userItem = bundle2?.getSerializable("user_object") as? Entity1
 
 
         if(userItem!=null) {
 
-            var product: ProductsItem
+            val product: ProductsItem= ProductsItem(
+                productItem?.favOrNot,
+                productItem?.addNumber!!,
+                true,
+                productItem.thumbnail,
+                productItem.rating,
+                productItem.description,
+                productItem.title,
+                productItem.price,
+                productItem.id,
+                productItem.stock,
+                userItem.id
+            )
+
 
             databinding.addCartDetails.setOnClickListener {
 
-                product = ProductsItem(
-                    productItem?.favOrNot,
-                    productItem?.addNumber!!,
-                    true,
-                    productItem.thumbnail,
-                    productItem.rating,
-                    productItem.description,
-                    productItem.title,
-                    productItem.price,
-                    productItem.id,
-                    productItem.stock,
-                    userItem.id
-                )
-
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
+
+                Log.e("Clickkkkkkkkkkkkkkk","Details Fragment")
             }
         }
 
