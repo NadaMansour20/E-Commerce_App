@@ -1,21 +1,26 @@
-package com.android.e_commerce_app.ui.login
+package com.android.e_commerce_app.ui.register
 
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.ObservableField
 import com.android.e_commerce_app.base.BaseViewModel
 import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 
-class LoginViewModel: BaseViewModel() {
+class RegisterViewModel:BaseViewModel() {
 
 
     var Email= ObservableField<String>()
-    var EmailError=ObservableField<String>()
+    var EmailError= ObservableField<String>()
 
 
     var Pass= ObservableField<String>()
-    var PassError=ObservableField<String>()
+    var PassError= ObservableField<String>()
+
+    var confirmPass= ObservableField<String>()
+    var confirmPassError= ObservableField<String>()
+
+    var userName=ObservableField<String>()
+    var userNameError=ObservableField<String>()
 
 
 
@@ -39,40 +44,19 @@ class LoginViewModel: BaseViewModel() {
 //        googleFlag.value=true
 //    }
 
-    fun login(){
+    fun register(){
 
         if(validate()){
 
-            var user:Entity1?=null
-             fun isUserExists(email: String): Boolean {
-                 user = MyDataBase.getDataBase().productDao().getUserByEmail(email)
+            val user= Entity1(0,userName.get().toString(),Email.get().toString(), Pass.get().toString())
 
-                 Log.e("Emailllllllll","${user?.email}")
-
-                return (user != null)
-            }
-
-
-            if(!isUserExists(Email.get().toString())) {
-                // navigate to register
-                toast.value=true
-            }
-            else{
-
-                //enter to main activity
                 user_data.value=user
-
-                Log.e("Userrrrrrrrr Email","already exits")
-
-            }
+                MyDataBase.getDataBase().productDao().insert_User(user)
 
 
+            flagActivityRegiterToMain.value=true
 
         }
-    }
-
-    fun registerNow(){
-        flagActivityRegister.value=true
     }
 
 
@@ -85,20 +69,39 @@ class LoginViewModel: BaseViewModel() {
             valid=false
             EmailError.set("Please enter email")
         }
-        if(!isValidEmail(Email.get().toString())){
+        else if(!isValidEmail(Email.get().toString())){
             valid=false
             EmailError.set("Invalid email format")
         }
         else{
             EmailError.set(null)
         }
+        if(userName.get().isNullOrBlank()){
+            valid=false
+            userNameError.set("Please enter userName")
+        }
+        else{
+            userNameError.set(null)
+        }
+        if(confirmPass.get().isNullOrBlank()){
 
+            valid=false
+            confirmPassError.set("Please enter confirm password")
+        }
+        if(confirmPass.get().toString()!=Pass.get().toString()){
+
+            valid=false
+            confirmPassError.set("not correct")
+        }
+        else{
+            confirmPassError.set(null)
+        }
         if(Pass.get().isNullOrBlank()){
 
             valid=false
             PassError.set("Please enter password")
         }
-        if(!isValidPassword(Pass.get().toString())){
+        else if(!isValidPassword(Pass.get().toString())){
             valid=false
             PassError.set("Password must be at least 6 characters, containing letters and digits")
         }
@@ -113,4 +116,6 @@ class LoginViewModel: BaseViewModel() {
 
 
 
+
 }
+

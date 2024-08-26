@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="rvm"
+            type="com.android.e_commerce_app.ui.register.RegisterViewModel" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        >
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:layout_marginTop="100dp"
+      >
+
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayoutusername"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="15dp"
+          android:error="@{rvm.userNameError}"
+          >
+          <EditText
+              android:id="@+id/username"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/enter_user_name"
+              android:text="@={rvm.userName}"
+              />
+
+      </com.google.android.material.textfield.TextInputLayout>
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayoutemail"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="15dp"
+          android:error="@{rvm.emailError}"
+          >
+          <EditText
+              android:id="@+id/email"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/enter_email"
+              android:text="@={rvm.email}"
+              />
+
+      </com.google.android.material.textfield.TextInputLayout>
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayoutPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="15dp"
+          android:error="@{rvm.passError}"
+          >
+          <EditText
+              android:id="@+id/password"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="enter password"
+              android:text="@={rvm.pass}"
+              />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayoutconfirmPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="15dp"
+          android:error="@{rvm.confirmPassError}"
+          >
+          <EditText
+              android:id="@+id/confirmpassword"
+              android:inputType="textPassword"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="confirm password"
+              android:text="@={rvm.confirmPass}"
+              />
+
+      </com.google.android.material.textfield.TextInputLayout>
+      <Button
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/register"
+          android:padding="10dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginBottom="10dp"
+          style="@style/Button"
+          android:layout_marginTop="50dp"
+          android:textSize="20sp"
+          android:onClick="@{()->rvm.register()}"
+          android:backgroundTint="@color/roze"/>
+
+  </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

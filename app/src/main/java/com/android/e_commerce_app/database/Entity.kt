@@ -14,6 +14,8 @@ data class Entity1(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
 
+    val userName:String?=null,
+
     val email: String? = null,
 
     val password: String? = null

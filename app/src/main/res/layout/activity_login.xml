@@ -13,13 +13,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        android:paddingTop="50dp"
         tools:context=".ui.login.LoginActivity">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical">
 
         <ImageView
@@ -27,6 +28,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:layout_gravity="center"
             android:src="@drawable/onlineshopping"
 
            />
@@ -54,10 +56,11 @@
                 android:layout_margin="15dp"
                 android:error="@{lvm.passError}"
                 app:endIconMode="custom"
-                app:endIconDrawable="@drawable/openeye"
+                app:endIconDrawable="@drawable/closeeye"
                 >
                 <EditText
                     android:id="@+id/password"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_password_to_continue"
@@ -70,7 +73,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/continuee"
+            android:text="@string/login"
             android:padding="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
@@ -78,8 +81,31 @@
             style="@style/Button"
             android:layout_marginTop="50dp"
             android:textSize="20sp"
-            android:onClick="@{()->lvm.register()}"
+            android:onClick="@{()->lvm.login()}"
             android:backgroundTint="@color/roze"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/don_t_have_an_account"
+                    android:layout_marginStart="50dp"
+                    />
+                <TextView
+                    android:id="@+id/register_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/roze"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:onClick="@{()->lvm.registerNow()}"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/register_now"/>
+            </LinearLayout>
+
 
 
         </LinearLayout>

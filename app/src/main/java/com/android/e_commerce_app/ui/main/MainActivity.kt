@@ -73,6 +73,7 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
 
         val user = intent.getSerializableExtra("user") as Entity1
 
+
         Log.e("Loginnnnnnnnnnnnnnnnnnnn","$user")
 
         if(user!=null) {
@@ -82,6 +83,7 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
             }
             fragment.arguments = bundle
         }
+
 
         supportFragmentManager.beginTransaction().replace(R.id.container_frame,fragment).commit()
 

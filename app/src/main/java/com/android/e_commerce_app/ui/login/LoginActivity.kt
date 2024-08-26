@@ -11,6 +11,7 @@ import com.android.e_commerce_app.database.Entity1
 import com.android.e_commerce_app.database.MyDataBase
 import com.android.e_commerce_app.databinding.ActivityLoginBinding
 import com.android.e_commerce_app.ui.main.MainActivity
+import com.android.e_commerce_app.ui.register.RegisterActivity
 import com.android.final_app.Base.BaseActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -24,8 +25,8 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
 
 
-    lateinit var google_signinOption:GoogleSignInOptions
-    lateinit var goodle_signinClient:GoogleSignInClient
+//    lateinit var google_signinOption:GoogleSignInOptions
+//    lateinit var goodle_signinClient:GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +39,10 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
        // sign_in_byGoogle()
 
 
-        // Set the initial state of the password field to be hidden (dots)
-        dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye) // Initial icon should be 'closeeye'
-
         dataBinding.textInputLayoutPassword.setEndIconOnClickListener {
             val isPasswordVisible = dataBinding.password.inputType and InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             if (isPasswordVisible) {
                 // Hide password
-                dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye)
             } else {
                 // Show password
@@ -70,16 +66,10 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
     fun observe_data(){
 
-        viewModel.flagActivity.observe(this, Observer {
+        viewModel.flagActivityRegister.observe(this, Observer {
 
             if(it) {
-                startActivity()
-            }
-        })
-
-        viewModel.googleFlag.observe(this, Observer {
-            if(it){
-                //signIn()
+                startActivityRegister()
             }
         })
 
@@ -89,6 +79,18 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
             intent.putExtra("user", it)
             startActivity(intent)
         })
+
+        viewModel.toast.observe(this, Observer {
+            if(it){
+                Toast.makeText(this,"Invalidate Login",Toast.LENGTH_LONG).show()
+            }
+        })
+//        viewModel.googleFlag.observe(this, Observer {
+//            if(it){
+//                //signIn()
+//            }
+//        })
+
     }
 
 //    fun storeUserInDatabase(account: GoogleSignInAccount) {
@@ -137,10 +139,11 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 //        }
 //    }
 
-    fun startActivity(){
-        val intent = Intent(this, MainActivity::class.java)
+    fun startActivityRegister(){
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
+
 
 
 
