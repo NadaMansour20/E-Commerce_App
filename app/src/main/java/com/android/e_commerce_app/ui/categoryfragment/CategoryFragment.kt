@@ -113,7 +113,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
             override fun add_Cart(item: ProductsItem?) {
 
-                Product = ProductsItem(item?.favOrNot,0,true,item?.thumbnail,item?.rating,item?.description,
+                Product = ProductsItem(item?.favOrNot,1,true,item?.thumbnail,item?.rating,item?.description,
                     item?.title,item?.price,item?.id!!,item.stock,use_id)
 
 

@@ -73,8 +73,8 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
 
             override fun add_Cart(item: ProductsItem?) {
 
-                val Product = ProductsItem(item?.favOrNot,item?.addNumber!!,true,item.thumbnail,item.rating,item.description,
-                    item.title,item.price,item.id,item.stock,user_id)
+                val Product = ProductsItem(item?.favOrNot,1,true,item?.thumbnail,item?.rating,item?.description,
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 

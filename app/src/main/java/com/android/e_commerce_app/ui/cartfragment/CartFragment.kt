@@ -2,6 +2,8 @@ package com.android.e_commerce_app.ui.cartfragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -96,6 +98,34 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
                 TODO("Not yet implemented")
             }
 
+        }
+        databinding.purchase.setOnClickListener {
+
+            val total_price=databinding.apiPrice.text
+            val alertDialog = AlertDialog.Builder(requireContext())
+            alertDialog.setTitle("attention here")
+            alertDialog.setMessage("Confirm your $ $total_price purchase?")
+
+            alertDialog.setCancelable(false)
+
+            alertDialog.setPositiveButton("OK") { dialog, which ->
+                dialog.cancel()
+
+                //empty the cart_fragment
+
+                val products=MyDataBase.getDataBase().productDao().getCartProduct(user_id)
+                MyDataBase.getDataBase().productDao().delete_cart_fragment(products)
+                viewModel.getCartProducts(user_id)
+
+                Toast.makeText(requireContext(),"Your purchase was completed successfully:)", Toast.LENGTH_LONG).show()
+
+            }
+
+            alertDialog.setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+            alertDialog.create().show()
         }
 
     }

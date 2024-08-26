@@ -147,6 +147,7 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
 
                 val bundle=Bundle().apply {
                     putSerializable("product_object",item)
+                    putSerializable("user_id",user_id)
                 }
 
                 val secondFragment = ProductDetailsFragment().apply {

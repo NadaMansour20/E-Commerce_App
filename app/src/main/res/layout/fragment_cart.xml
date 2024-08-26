@@ -72,6 +72,7 @@
             tools:listitem="@layout/item_design_cart"
             android:layout_marginBottom="20dp"/>
         <Button
+            android:id="@+id/purchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/purchase"

@@ -35,22 +35,27 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
 
        observe_data()
-        sign_in_byGoogle()
+       // sign_in_byGoogle()
 
+
+        // Set the initial state of the password field to be hidden (dots)
+        dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye) // Initial icon should be 'closeeye'
 
         dataBinding.textInputLayoutPassword.setEndIconOnClickListener {
             val isPasswordVisible = dataBinding.password.inputType and InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             if (isPasswordVisible) {
                 // Hide password
                 dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-               dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye)
+                dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye)
             } else {
                 // Show password
                 dataBinding.password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                 dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.openeye)
             }
-            dataBinding.password.setSelection( dataBinding.password.text.length)
+            dataBinding.password.setSelection(dataBinding.password.text.length)
         }
+
 
 
     }
@@ -74,7 +79,7 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
         viewModel.googleFlag.observe(this, Observer {
             if(it){
-                signIn()
+                //signIn()
             }
         })
 
@@ -86,51 +91,51 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
         })
     }
 
-    fun storeUserInDatabase(account: GoogleSignInAccount) {
-        val user = Entity1(
-            id=account.id!!.toInt(),
-            email = account.email ?: "",
-            password = account.displayName ?: ""
-        )
+//    fun storeUserInDatabase(account: GoogleSignInAccount) {
+//        val user = Entity1(
+//            id=account.id!!.toInt(),
+//            email = account.email ?: "",
+//            password = account.displayName ?: ""
+//        )
+//
+//        val intent = Intent(this, MainActivity::class.java)
+//        intent.putExtra("user", user)
+//        startActivity(intent)
+//
+//        MyDataBase.getDataBase().productDao().insert_User(user)
+//
+//    }
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("user", user)
-        startActivity(intent)
+//    fun sign_in_byGoogle(){
+//
+//        google_signinOption=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+//
+//        goodle_signinClient= GoogleSignIn.getClient(this,google_signinOption)
+//
+//    }
 
-        MyDataBase.getDataBase().productDao().insert_User(user)
-
-    }
-
-    fun sign_in_byGoogle(){
-
-        google_signinOption=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
-
-        goodle_signinClient= GoogleSignIn.getClient(this,google_signinOption)
-
-    }
-
-    fun signIn(){
-
-        val signInIntent:Intent=goodle_signinClient.getSignInIntent()
-        startActivityForResult(signInIntent,1000)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === 1000) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                 var account=task.getResult(ApiException::class.java)
-                if(account!=null) {
-                    storeUserInDatabase(account)
-                    startActivity()
-                }
-            } catch (e: ApiException) {
-                Toast.makeText(applicationContext, "Something went wrong", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-    }
+//    fun signIn(){
+//
+//        val signInIntent:Intent=goodle_signinClient.getSignInIntent()
+//        startActivityForResult(signInIntent,1000)
+//    }
+//
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode === 1000) {
+//            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+//            try {
+//                 var account=task.getResult(ApiException::class.java)
+//                if(account!=null) {
+//                    storeUserInDatabase(account)
+//                    startActivity()
+//                }
+//            } catch (e: ApiException) {
+//                Toast.makeText(applicationContext, "Something went wrong", Toast.LENGTH_SHORT)
+//                    .show()
+//            }
+//        }
+//    }
 
     fun startActivity(){
         val intent = Intent(this, MainActivity::class.java)

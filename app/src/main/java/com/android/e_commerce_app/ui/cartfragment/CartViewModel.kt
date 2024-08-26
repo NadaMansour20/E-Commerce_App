@@ -15,33 +15,45 @@ class CartViewModel :BaseViewModel(){
         viewModelScope.launch {
 
             try {
-                var result= MyDataBase.getDataBase().productDao().getCartProduct(useId)
+                var resultt= MyDataBase.getDataBase().productDao().getCartProduct(useId)
 
-                Log.e("getCartProduct","Correcttttttt${result}")
+                Log.e("getCartProduct","Correcttttttt${resultt}")
+
 
                 //all price of products in card
                 var sum=0.0
-                for(i in 0..<result.size){
-                    sum+= result[i].price!! * result[i].addNumber
+                for (result in resultt) {
+                    sum += result.price!! * result.addNumber
 
-                    if(result[i].addNumber==0){
-                        val product=ProductsItem(result[i].favOrNot,0,false,result[i].thumbnail
-                        ,result[i].rating,result[i].description,result[i].title,result[i].price,result[i].id,result[i].stock,result[i].foreign_key)
+                    if (result.addNumber == 0) {
+                        val product = ProductsItem(
+                            result.favOrNot,
+                            0,
+                            false,
+                            result.thumbnail,
+                            result.rating,
+                            result.description,
+                            result.title,
+                            result.price,
+                            result.id,
+                            result.stock,
+                            result.foreign_key
+                        )
 
-                        MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
+                        MyDataBase.getDataBase().productDao().delet_product(product)
 
-                         result= MyDataBase.getDataBase().productDao().getCartProduct(useId)
+                        resultt = MyDataBase.getDataBase().productDao().getCartProduct(useId)
 
 
-                        Log.e("leave CartProduct","leaveeeeeeeeeee${product}")
+                        Log.e("leave CartProduct", "leaveeeeeeeeeee${result}")
 
                     }
-
                 }
+
 
                 text.value=String.format("%.2f", sum)
 
-                cart_items.value=result
+                cart_items.value=resultt
 
             }catch (ex:Exception){
 

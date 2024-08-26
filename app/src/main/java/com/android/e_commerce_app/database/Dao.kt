@@ -1,6 +1,7 @@
 package com.android.e_commerce_app.database
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -30,6 +31,13 @@ interface Dao {
 
     @Query("select * from user where email =:email limit 1")
     fun getUserByEmail(email: String): Entity1?
+
+    @Delete
+    fun delete_cart_fragment(products:List<ProductsItem>)
+
+
+    @Delete
+    fun delet_product(product:ProductsItem)
 
 
 }

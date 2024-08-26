@@ -22,12 +22,14 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsViewModel,DetailsProdu
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       //databinding.details=viewModel
+       databinding.details=viewModel
 
         //receive data by Bundle from home fragment
 
         val bundle=arguments
         val productItem = bundle?.getSerializable("product_object") as? ProductsItem
+        val user_id = bundle?.getSerializable("user_id") as? Int
+
 
         if(productItem!=null) {
 
@@ -45,38 +47,30 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsViewModel,DetailsProdu
 
         }
 
+        val product= ProductsItem(
+            productItem?.favOrNot,
+            1,
+            true,
+            productItem?.thumbnail,
+            productItem?.rating,
+            productItem?.description,
+            productItem?.title,
+            productItem?.price,
+            productItem?.id!!,
+            productItem.stock,
+            user_id
+        )
 
 
-        val bundle2=arguments
 
-        val userItem = bundle2?.getSerializable("user_object") as? Entity1
-
-
-        if(userItem!=null) {
-
-            val product: ProductsItem= ProductsItem(
-                productItem?.favOrNot,
-                productItem?.addNumber!!,
-                true,
-                productItem.thumbnail,
-                productItem.rating,
-                productItem.description,
-                productItem.title,
-                productItem.price,
-                productItem.id,
-                productItem.stock,
-                userItem.id
-            )
+        databinding.addCartDetails.setOnClickListener {
 
 
-            databinding.addCartDetails.setOnClickListener {
+            MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
 
-
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
-
-                Log.e("Clickkkkkkkkkkkkkkk","Details Fragment")
-            }
+            Log.e("Clickkkkkkkkkkkkkkk","Details Fragment+$product")
         }
+
 
 
 
