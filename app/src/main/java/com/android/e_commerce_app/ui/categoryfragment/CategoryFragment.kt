@@ -61,7 +61,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
         return ViewModelProvider(this).get(CategoryViewModel::class.java)
     }
 
-    fun click(use_id:Int){
+    fun click(user_id:Int){
         categoryAdapter.categoryListener=object : CategoryClickListener {
 
             override fun categoryClick(position: Int, category_name: String?) {
@@ -82,11 +82,11 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
                 if(flag%2==0) {
                     Product = ProductsItem(true,item?.addNumber!!,item.addToCart,item.thumbnail,item.rating,item.description,
-                        item.title,item.price,item.id,item.stock,use_id)
+                        item.title,item.price,item.id,item.stock,user_id)
                 }
                 else{
                     Product = ProductsItem(false,item?.addNumber!!,item.addToCart,item.thumbnail,item.rating,item.description,
-                        item.title,item.price,item.id,item.stock,use_id)
+                        item.title,item.price,item.id,item.stock,user_id)
 
                 }
 
@@ -104,7 +104,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
             override fun add_Item(item: ProductsItem?, add: Int?) {
 
                 Product = ProductsItem(item?.favOrNot,add!!,true,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,use_id)
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
@@ -118,7 +118,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
             override fun add_Cart(item: ProductsItem?) {
 
                 Product = ProductsItem(item?.favOrNot,1,true,item?.thumbnail,item?.rating,item?.description,
-                    item?.title,item?.price,item?.id!!,item.stock,use_id)
+                    item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
                 MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
@@ -139,6 +139,8 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
                 val bundle=Bundle().apply {
                     putSerializable("product_object",item)
+                    putSerializable("user_id",user_id)
+
                 }
 
                 val secondFragment = ProductDetailsFragment().apply {

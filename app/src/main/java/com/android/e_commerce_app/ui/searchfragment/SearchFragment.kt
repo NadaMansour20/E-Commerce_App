@@ -184,6 +184,8 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
                 val bundle=Bundle().apply {
                     putSerializable("product_object",item)
+                    putSerializable("user_id",user_id)
+
                 }
 
                 val secondFragment = ProductDetailsFragment().apply {
