@@ -24,7 +24,7 @@
                 app:spanCount="2"
                 android:orientation="vertical"
                 tools:listitem="@layout/item_design"
-                android:layout_margin="5dp" />
+                 />
 
 
         <ProgressBar
