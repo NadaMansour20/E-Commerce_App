@@ -43,6 +43,7 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
             val isPasswordVisible = dataBinding.password.inputType and InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             if (isPasswordVisible) {
                 // Hide password
+                dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye)
             } else {
                 // Show password
