@@ -82,7 +82,7 @@ class LoginActivity : BaseActivity<LoginViewModel,ActivityLoginBinding>(){
 
         viewModel.toast.observe(this, Observer {
             if(it){
-                Toast.makeText(this,"Invalidate Login",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Invalidate Login, account not found",Toast.LENGTH_LONG).show()
             }
         })
 //        viewModel.googleFlag.observe(this, Observer {

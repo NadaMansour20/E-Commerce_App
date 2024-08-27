@@ -3,10 +3,13 @@ package com.android.e_commerce_app.ui.register
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.e_commerce_app.R
 import com.android.e_commerce_app.databinding.ActivityRegisterBinding
+import com.android.e_commerce_app.ui.login.LoginActivity
 import com.android.e_commerce_app.ui.main.MainActivity
 import com.android.final_app.Base.BaseActivity
 
@@ -19,12 +22,6 @@ class RegisterActivity :BaseActivity<RegisterViewModel,ActivityRegisterBinding>(
         observe()
 
 
-
-        // Set the initial state of the password field to be hidden (dots)
-
-        //password
-        dataBinding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        dataBinding.textInputLayoutPassword.setEndIconDrawable(R.drawable.closeeye) // Initial icon should be 'closeeye'
 
         dataBinding.textInputLayoutPassword.setEndIconOnClickListener {
             val isPasswordVisible = dataBinding.password.inputType and InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -60,17 +57,21 @@ class RegisterActivity :BaseActivity<RegisterViewModel,ActivityRegisterBinding>(
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("user", it)
             startActivity(intent)
+
+            Log.e("Userrrrrrrrrrrrrr","user${it}");
         })
 
-        viewModel.flagActivityRegiterToMain.observe(this, Observer {
+        viewModel.flagActivityLogin.observe(this, Observer {
             if(it){
-                startActivityMain()
+                startActivityLogin()
+                Toast.makeText(this,"Register Successfully",Toast.LENGTH_LONG).show()
             }
         })
+
     }
 
-    fun startActivityMain(){
-        val intent = Intent(this,MainActivity::class.java)
+    fun startActivityLogin(){
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }

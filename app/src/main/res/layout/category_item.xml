@@ -25,7 +25,7 @@
                 android:textAlignment="center"
                 android:singleLine="false"
                 android:background="@drawable/buttonborder"
-                android:textColor="@color/white"
+                android:textColor="@color/roze"
                 android:textStyle="bold"
                 />
 

@@ -57,12 +57,12 @@ class LoginViewModel: BaseViewModel() {
                 // navigate to register
                 toast.value=true
             }
-            else{
+            else if(Email.get().toString()==user?.email&&Pass.get().toString()==user?.password){
 
                 //enter to main activity
                 user_data.value=user
 
-                Log.e("Userrrrrrrrr Email","already exits")
+                Log.e("Userrrrrrrrr Email","already exits${user?.email}+${user?.password}+${user?.userName}")
 
             }
 

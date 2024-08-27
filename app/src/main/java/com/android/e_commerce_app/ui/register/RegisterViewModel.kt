@@ -54,7 +54,8 @@ class RegisterViewModel:BaseViewModel() {
                 MyDataBase.getDataBase().productDao().insert_User(user)
 
 
-            flagActivityRegiterToMain.value=true
+            flagActivityLogin.value=true
+
 
         }
     }

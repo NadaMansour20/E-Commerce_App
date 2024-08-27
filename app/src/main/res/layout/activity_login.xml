@@ -98,7 +98,7 @@
                     android:id="@+id/register_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/roze"
+                    android:textColor="@color/roze_dark"
                     android:textStyle="bold"
                     android:textSize="17sp"
                     android:onClick="@{()->lvm.registerNow()}"

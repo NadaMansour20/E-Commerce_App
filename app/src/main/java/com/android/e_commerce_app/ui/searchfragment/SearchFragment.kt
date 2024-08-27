@@ -68,6 +68,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
 
     fun search_click(){
+        
         // the action that taken when click on search_view
         databinding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

@@ -1,6 +1,7 @@
 package com.android.e_commerce_app.ui.categoryfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -35,6 +36,9 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
         viewModel.get_Category()
 
         databinding.categoryTypeRecycler.adapter=categoryAdapter
+        databinding.categoryProductrecyclerView.adapter=homeAdapter
+
+
 
         val bundle=arguments
 
@@ -160,6 +164,10 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
 
             categoryAdapter.notify(category)
+            viewModel.get_product_by_category(category!![0]?.name.toString())
+
+            Log.e("&&&&&&&&&&&&&&&&&&&&&&&","${category[0]?.name.toString()}")
+
 
         })
 
