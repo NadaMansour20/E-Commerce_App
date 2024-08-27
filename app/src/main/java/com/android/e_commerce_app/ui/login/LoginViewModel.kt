@@ -85,7 +85,7 @@ class LoginViewModel: BaseViewModel() {
             valid=false
             EmailError.set("Please enter email")
         }
-        if(!isValidEmail(Email.get().toString())){
+        else if(!isValidEmail(Email.get().toString())){
             valid=false
             EmailError.set("Invalid email format")
         }
@@ -98,7 +98,7 @@ class LoginViewModel: BaseViewModel() {
             valid=false
             PassError.set("Please enter password")
         }
-        if(!isValidPassword(Pass.get().toString())){
+        else if(!isValidPassword(Pass.get().toString())){
             valid=false
             PassError.set("Password must be at least 6 characters, containing letters and digits")
         }

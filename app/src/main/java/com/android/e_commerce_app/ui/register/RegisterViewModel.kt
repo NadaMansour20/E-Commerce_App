@@ -89,7 +89,7 @@ class RegisterViewModel:BaseViewModel() {
             valid=false
             confirmPassError.set("Please enter confirm password")
         }
-        if(confirmPass.get().toString()!=Pass.get().toString()){
+        else if(confirmPass.get().toString()!=Pass.get().toString()){
 
             valid=false
             confirmPassError.set("not correct")
