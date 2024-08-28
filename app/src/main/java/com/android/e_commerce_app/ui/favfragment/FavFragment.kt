@@ -1,6 +1,7 @@
 package com.android.e_commerce_app.ui.favfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -76,7 +77,8 @@ class FavFragment :BaseFragment<FavViewModel,FragmentFavBinding>(){
                 val Product = ProductsItem(item?.favOrNot,1,true,item?.thumbnail,item?.rating,item?.description,
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
 
 

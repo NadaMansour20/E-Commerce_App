@@ -23,13 +23,13 @@ data class Entity1(
 ):Serializable
 
 
-//relation between 2 table
-data class UserWithProducts(
-    @Embedded val user: Entity1,
-
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "foreign_key"
-    )
-    val products: List<ProductsItem>
-)
+////relation between 2 table
+//data class UserWithProducts(
+//    @Embedded val user: Entity1,
+//
+//    @Relation(
+//        parentColumn = "id",
+//        entityColumn = "foreign_key"
+//    )
+//    val products: List<ProductsItem>
+//)

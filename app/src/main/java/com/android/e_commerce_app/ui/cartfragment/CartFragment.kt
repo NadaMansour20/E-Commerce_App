@@ -1,6 +1,7 @@
 package com.android.e_commerce_app.ui.cartfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -72,7 +73,7 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 //update and receive data again
                 viewModel.getCartProducts(user_id)
@@ -88,7 +89,8 @@ class CartFragment : BaseFragment<CartViewModel,FragmentCartBinding>() {
                 val Product = ProductsItem(item?.favOrNot,add!!,item?.addToCart,item?.thumbnail,item?.rating,item?.description,
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 viewModel.getCartProducts(user_id)
 

@@ -97,12 +97,13 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
 
                 }
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
-
-                val fav_products=MyDataBase.getDataBase().productDao().getFavProduct(user_id)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
 
-                Log.e("Favvvvvvvvvvvvvvvv","correctttttt${fav_products}")
+//                val fav_products=MyDataBase.getDataBase().productDao().getFavProduct(user_id)
+//
+//
+//                Log.e("Favvvvvvvvvvvvvvvv","correctttttt${fav_products}")
 
 
 
@@ -114,7 +115,9 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+
 
 
 //                val get_product=MyDataBase.getDataBase().productDao().getProduct(item.id)
@@ -129,11 +132,11 @@ class HomeFragment :BaseFragment<HomeFragmentViewModel,FragmentHomeBinding>(){
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
-                val get_product=MyDataBase.getDataBase().productDao().getCartProduct(item.id)
-
-                Log.e("addCarttttttttt","correctttttt${get_product}")
+//                val get_product=MyDataBase.getDataBase().productDao().getCartProduct(item.id)
+//
+//                Log.e("addCarttttttttt","correctttttt${get_product}")
 
             }
 

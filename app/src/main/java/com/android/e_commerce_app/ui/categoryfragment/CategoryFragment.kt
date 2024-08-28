@@ -90,7 +90,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
 
                 }
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 // val fav_products= MyDataBase.getDataBase().productDao().getFavProduct(true)
 
@@ -106,8 +106,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
                 Product = ProductsItem(item?.favOrNot,add!!,true,item?.thumbnail,item?.rating,item?.description,
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
-
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 // val get_product= MyDataBase.getDataBase().productDao().getProduct(item.id)
 
@@ -121,7 +120,7 @@ class CategoryFragment :BaseFragment<CategoryViewModel,FragmentCategoryBinding>(
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 // val get_product= MyDataBase.getDataBase().productDao().getProduct(item.id)
 

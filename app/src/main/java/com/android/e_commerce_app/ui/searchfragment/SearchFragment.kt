@@ -135,7 +135,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
 
                 }
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 // var get_product= MyDataBase.getInstance(context!!).productDao().getProduct(item.id)
                // var fav_products= MyDataBase.getDataBase().productDao().getFavProduct(0)
@@ -153,7 +153,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
 
                 //var get_product= MyDataBase.getDataBase().productDao().getProduct(item.id)
 
@@ -167,8 +167,7 @@ class SearchFragment :BaseFragment<SearchViewModel,FragmentSearchBinding>() {
                     item?.title,item?.price,item?.id!!,item.stock,user_id)
 
 
-                MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
-
+                    MyDataBase.getDataBase().productDao().insertProductsToDataBase(Product)
                 //var get_product= MyDataBase.getDataBase().productDao().getCartProduct(0)
 
                 //Log.e("addCarttttttttt","correctttttt${get_product}")

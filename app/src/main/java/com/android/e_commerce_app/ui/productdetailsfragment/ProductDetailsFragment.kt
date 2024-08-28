@@ -66,7 +66,7 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsViewModel,DetailsProdu
         databinding.addCartDetails.setOnClickListener {
 
 
-            MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
+                MyDataBase.getDataBase().productDao().insertProductsToDataBase(product)
 
             Log.e("Clickkkkkkkkkkkkkkk","Details Fragment+$product")
         }

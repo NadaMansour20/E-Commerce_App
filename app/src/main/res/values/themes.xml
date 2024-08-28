@@ -20,4 +20,8 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="FLOATINGBUTTON">
+        <item name="android:backgroundTint">@color/roze</item>
+        <item name="tint">@color/white</item>
+    </style>
 </resources>

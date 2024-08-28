@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.android.e_commerce_app.ui.api.ProductsItem
 
 
-@Database(entities=[Entity1::class,ProductsItem::class],version=29)
+@Database(entities=[Entity1::class,ProductsItem::class],version=32)
 abstract class MyDataBase:RoomDatabase(){
 
 

@@ -10,7 +10,7 @@
 
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="10dp">
@@ -35,7 +35,7 @@
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:text="@{cartvm.title}"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:maxLines="2"
                 android:singleLine="false"
                 android:layout_marginStart="15dp"
@@ -65,17 +65,20 @@
                 android:layout_margin="10dp"
                 android:textStyle="bold" />
 
-            <ImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/roze"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/add"
+                style="@style/FLOATINGBUTTON"
                 android:layout_margin="5dp"
-                android:background="@drawable/circlearoundlike"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3"
                 />
+
 
             <TextView
                 android:id="@+id/num_of_add_or_mines"
@@ -83,26 +86,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:text="@{String.valueOf(cartvm.addNumber)}"
                 app:layout_constraintTop_toTopOf="@id/minesImageButton"
+                app:layout_constraintBottom_toBottomOf="@id/minesImageButton"
                 app:layout_constraintStart_toEndOf="@id/minesImageButton" />
 
-            <ImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/minesImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/mines"
+                style="@style/FLOATINGBUTTON"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
                 android:layout_marginEnd="140dp"
                 android:layout_marginBottom="4dp"
-                android:background="@drawable/circlearoundlike"
-                android:backgroundTint="@color/roze"
-                android:src="@drawable/mines"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
