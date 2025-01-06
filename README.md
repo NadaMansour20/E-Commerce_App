@@ -7,6 +7,9 @@ Favorites & Cart Management: Users can save their favorite products and add item
 Product Search: The app includes a search feature, allowing users to quickly find products within the app.</br>
 
 Api -> https://dummyjson.com/
+
+<h1>Screen Shots</h1>
+
 ![photo_6044239851856971266_y](https://github.com/user-attachments/assets/cb9cfdd5-e55f-41cd-a5c6-8e883a09c8a1)
 
 ![photo_6044239851856971264_y](https://github.com/user-attachments/assets/09745c8d-e090-4d79-a89d-f80c4a927781)
